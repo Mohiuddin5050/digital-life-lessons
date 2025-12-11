@@ -1,5 +1,8 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import useAuth from "../../hooks/useAuth";
+import { Link, useLocation, useNavigate } from "react-router";
+import SocialLogin from "./SocialLogin";
 
 const Register = () => {
   const {
@@ -8,17 +11,30 @@ const Register = () => {
     handleSubmit,
   } = useForm();
 
+  const { registerUser } = useAuth();
+   const location = useLocation();
+  const navigate = useNavigate();
+
   const handelRegister = (data) => {
     console.log("after register", data);
+    registerUser(data.email, data.password, data.displayName, data.photoURL
+)
+    .then(result=>{
+      console.log(result.user);
+      navigate(location?.state || "/");
+    })
+    .catch(error=>{
+      console.log(error);
+    })
   };
 
   return (
-    <div className="">
+    <div className="card bg-base-100 w-full mx-auto max-w-sm shrink-0 shadow-2xl">
       <form
         onSubmit={handleSubmit(handelRegister)}
-        className="min-h-screen flex flex-col justify-center items-center"
+        className=""
       >
-        <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+        <div className="">
           <div className="card-body">
             <fieldset className="fieldset">
               {/* Name field */}
@@ -83,9 +99,20 @@ const Register = () => {
               )}
               <button className="btn btn-neutral mt-4">Register</button>
             </fieldset>
+            <p>
+          Already have an account?{" "}
+          <Link
+            state={location.state}
+            className="text-blue-900 underline"
+            to="/login"
+          >
+            Login
+          </Link>
+        </p>
           </div>
         </div>
       </form>
+      <SocialLogin/>
     </div>
   );
 };
