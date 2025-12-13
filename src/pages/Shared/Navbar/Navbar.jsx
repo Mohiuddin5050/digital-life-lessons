@@ -2,6 +2,7 @@ import React from "react";
 
 import { Link, NavLink } from "react-router";
 import useAuth from "../../../hooks/useAuth";
+import Container from "../../../components/Container";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
@@ -43,78 +44,80 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="navbar bg-base-100 shadow-sm">
-      <div className="navbar-start">
-        <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              {" "}
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h8m-8 6h16"
-              />{" "}
-            </svg>
-          </div>
-          <ul
-            tabIndex="-1"
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
-          >
-            {links}
-          </ul>
-        </div>
-        <a className="btn btn-ghost text-xl">daisyUI</a>
-      </div>
-      <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">{links}</ul>
-      </div>
-      <div className="navbar-end">
-        {user ? (
-          <div className="dropdown dropdown-end">
-            <label tabIndex={0} className="btn btn-ghost flex items-center">
-              <img
-                src={user.photoURL || "https://via.placeholder.com/40"}
-                referrerPolicy="no-referrer"
-                alt="avatar"
-                className="w-8 h-8 rounded-full border"
-              />
-              <span className="ml-2">{user.displayName || "User"}</span>
-            </label>
-
+    <Container>
+      <div className="navbar bg-base-100 shadow-sm">
+        <div className="navbar-start">
+          <div className="dropdown">
+            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                {" "}
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h8m-8 6h16"
+                />{" "}
+              </svg>
+            </div>
             <ul
-              tabIndex={0}
-              className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
+              tabIndex="-1"
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
-              <li>
-                <Link to="/profile">Profile</Link>
-              </li>
-              <li>
-                <Link to="/activities">My Activities</Link>
-              </li>
-              <li>
-                <button onClick={handleLogout}>Logout</button>
-              </li>
+              {links}
             </ul>
           </div>
-        ) : (
-          <div className="space-x-3">
-            <Link to="/login" className="btn btn-primary">
-              Login
-            </Link>
-            <Link to="/register" className="btn btn-secondary">
-              Register
-            </Link>
-          </div>
-        )}
+          <a className="btn btn-ghost text-xl">daisyUI</a>
+        </div>
+        <div className="navbar-center hidden lg:flex">
+          <ul className="menu menu-horizontal px-1">{links}</ul>
+        </div>
+        <div className="navbar-end">
+          {user ? (
+            <div className="dropdown dropdown-end">
+              <label tabIndex={0} className="btn btn-ghost flex items-center">
+                <img
+                  src={user.photoURL || "https://via.placeholder.com/40"}
+                  referrerPolicy="no-referrer"
+                  alt="avatar"
+                  className="w-8 h-8 rounded-full border"
+                />
+                <span className="ml-2">{user.displayName || "User"}</span>
+              </label>
+
+              <ul
+                tabIndex={0}
+                className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
+              >
+                <li>
+                  <Link to="/profile">Profile</Link>
+                </li>
+                <li>
+                  <Link to="/activities">My Activities</Link>
+                </li>
+                <li>
+                  <button onClick={handleLogout}>Logout</button>
+                </li>
+              </ul>
+            </div>
+          ) : (
+            <div className="space-x-3">
+              <Link to="/login" className="btn btn-primary">
+                Login
+              </Link>
+              <Link to="/register" className="btn btn-secondary">
+                Register
+              </Link>
+            </div>
+          )}
+        </div>
       </div>
-    </div>
+    </Container>
   );
 };
 

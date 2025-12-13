@@ -4,11 +4,13 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import img1 from "../../assets/img1.jpg";
 import img2 from "../../assets/img2.jpg";
 import img3 from "../../assets/img3.jpg";
+import Container from "../../components/Container";
 
 const Banner = () => {
   return (
     <div className="pt-10">
-      <Carousel
+     <Container>
+       <Carousel
        dynamicHeight={true}
        autoPlay={true}
        infiniteLoop={true}
@@ -23,6 +25,7 @@ const Banner = () => {
           <img src={img3} />
         </div>
       </Carousel>
+     </Container>
     </div>
   );
 };
