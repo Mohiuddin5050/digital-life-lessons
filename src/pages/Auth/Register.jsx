@@ -12,28 +12,24 @@ const Register = () => {
   } = useForm();
 
   const { registerUser } = useAuth();
-   const location = useLocation();
+  const location = useLocation();
   const navigate = useNavigate();
 
   const handelRegister = (data) => {
     console.log("after register", data);
-    registerUser(data.email, data.password, data.displayName, data.photoURL
-)
-    .then(result=>{
-      console.log(result.user);
-      navigate(location?.state || "/");
-    })
-    .catch(error=>{
-      console.log(error);
-    })
+    registerUser(data.email, data.password, data.displayName, data.photoURL)
+      .then((result) => {
+        console.log(result.user);
+        navigate(location?.state || "/");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
     <div className="card bg-base-100 w-full mx-auto max-w-sm shrink-0 shadow-2xl">
-      <form
-        onSubmit={handleSubmit(handelRegister)}
-        className=""
-      >
+      <form onSubmit={handleSubmit(handelRegister)} className="">
         <div className="">
           <div className="card-body">
             <fieldset className="fieldset">
@@ -100,19 +96,19 @@ const Register = () => {
               <button className="btn btn-neutral mt-4">Register</button>
             </fieldset>
             <p>
-          Already have an account?{" "}
-          <Link
-            state={location.state}
-            className="text-blue-900 underline"
-            to="/login"
-          >
-            Login
-          </Link>
-        </p>
+              Already have an account?{" "}
+              <Link
+                state={location.state}
+                className="text-blue-900 underline"
+                to="/login"
+              >
+                Login
+              </Link>
+            </p>
           </div>
         </div>
       </form>
-      <SocialLogin/>
+      <SocialLogin />
     </div>
   );
 };

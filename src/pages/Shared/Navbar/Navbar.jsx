@@ -75,45 +75,45 @@ const Navbar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
-       <div className="navbar-end">
-          {user ? (
-            <div className="dropdown dropdown-end">
-              <label tabIndex={0} className="btn btn-ghost flex items-center">
-                <img
-                  src={user.photoURL || "https://via.placeholder.com/40"}
-                  referrerPolicy="no-referrer"
-                  alt="avatar"
-                  className="w-8 h-8 rounded-full border"
-                />
-                <span className="ml-2">{user.displayName || "User"}</span>
-              </label>
+      <div className="navbar-end">
+        {user ? (
+          <div className="dropdown dropdown-end">
+            <label tabIndex={0} className="btn btn-ghost flex items-center">
+              <img
+                src={user.photoURL || "https://via.placeholder.com/40"}
+                referrerPolicy="no-referrer"
+                alt="avatar"
+                className="w-8 h-8 rounded-full border"
+              />
+              <span className="ml-2">{user.displayName || "User"}</span>
+            </label>
 
-              <ul
-                tabIndex={0}
-                className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
-              >
-                <li>
-                  <Link to="/profile">Profile</Link>
-                </li>
-                <li>
-                  <Link to="/activities">My Activities</Link>
-                </li>
-                <li>
-                  <button onClick={handleLogout}>Logout</button>
-                </li>
-              </ul>
-            </div>
-          ) : (
-            <div className="space-x-3">
-              <Link to="/login" className="btn btn-primary">
-                Login
-              </Link>
-              <Link to="/register" className="btn btn-secondary">
-                Register
-              </Link>
-            </div>
-          )}
-        </div>
+            <ul
+              tabIndex={0}
+              className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
+            >
+              <li>
+                <Link to="/profile">Profile</Link>
+              </li>
+              <li>
+                <Link to="/activities">My Activities</Link>
+              </li>
+              <li>
+                <button onClick={handleLogout}>Logout</button>
+              </li>
+            </ul>
+          </div>
+        ) : (
+          <div className="space-x-3">
+            <Link to="/login" className="btn btn-primary">
+              Login
+            </Link>
+            <Link to="/register" className="btn btn-secondary">
+              Register
+            </Link>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
