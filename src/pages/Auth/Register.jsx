@@ -3,6 +3,9 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
 import { Link, useLocation, useNavigate } from "react-router";
 import SocialLogin from "./SocialLogin";
+import axios from "axios";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const {
@@ -11,16 +14,53 @@ const Register = () => {
     handleSubmit,
   } = useForm();
 
-  const { registerUser } = useAuth();
+  const { setUser, registerUser, updateUserProfile } = useAuth();
+  const axiosSecure = useAxiosSecure();
   const location = useLocation();
   const navigate = useNavigate();
 
   const handelRegister = (data) => {
-    console.log("after register", data);
-    registerUser(data.email, data.password, data.displayName, data.photoURL)
+    const profileImg = data.photo[0];
+
+    registerUser(data.email, data.password)
       .then((result) => {
-        console.log(result.user);
-        navigate(location?.state || "/");
+        const user = result.user;
+        setUser(user);
+        // store the image and get the photoURL
+        const formData = new FormData();
+        formData.append("image", profileImg);
+
+        const image_API_URL = `https://api.imgbb.com/1/upload?key=${
+          import.meta.env.VITE_img_host
+        }`;
+
+        axios.post(image_API_URL, formData).then((res) => {
+          console.log("after image uploaded", res.data.data.url);
+          const photoURL = res.data.data.url;
+
+          // update user profile in firebase
+          const userProfile = {
+            displayName: data.name,
+            photoUrl: photoURL,
+          };
+
+          updateUserProfile(userProfile)
+            .then(() => {
+              // create user in the database
+              const userInfo = {
+                email: data.email,
+                displayName: data.name,
+                photoUrl: photoURL,
+              };
+              axiosSecure.post("/users", userInfo).then(() => {
+                toast.success("Account created successfully!");
+                navigate(location.state || "/");
+              })
+              .catch((error) => console.log(error));
+            })
+            .catch((error) => console.log(error));
+        })
+        .catch((error) => console.log(error));
       })
       .catch((error) => {
         console.log(error);
@@ -47,10 +87,10 @@ const Register = () => {
               {/* Photo field */}
               <label className="label">Photo</label>
               <input
-                type="text"
+                type="file"
                 {...register("photo", { required: true })}
-                className="input"
-                placeholder="Your PhotoURL"
+                className="file-input"
+                placeholder="Your Photo"
               />
               {errors.photo?.type === "required" && (
                 <p className="text-red-500">Photo is required</p>

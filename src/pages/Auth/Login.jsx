@@ -62,7 +62,7 @@ const Login = () => {
                 </p>
               )}
               <div>
-                <a className="link link-hover">Forgot password?</a>
+                <Link to="/forgetPassword" className="link link-hover">Forgot password?</Link>
               </div>
               <button className="btn btn-neutral mt-4">Login</button>
             </fieldset>
