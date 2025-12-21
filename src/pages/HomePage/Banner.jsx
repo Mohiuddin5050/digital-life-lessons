@@ -8,25 +8,26 @@ import "swiper/css/navigation";
 
 const HeroSlider = () => {
   return (
-    <Container>
-      <Swiper
-        modules={[Autoplay, Pagination, Navigation]}
-        autoplay={{ delay: 4000 }}
-        loop={true}
-        pagination={{ clickable: true }}
-        navigation={true}
-        className="w-full h-[80vh]"
-      >
-        {/* Slide 1 */}
-        <SwiperSlide>
-          <div
-            className="hero h-full"
-            style={{
-              backgroundImage:
-                "url(https://images.unsplash.com/photo-1500530855697-b586d89ba3ee)",
-            }}
-          >
-            <div className="hero-overlay bg-opacity-60"></div>
+    <Swiper
+      modules={[Autoplay, Pagination, Navigation]}
+      autoplay={{ delay: 4000 }}
+      loop={true}
+      pagination={{ clickable: true }}
+      // navigation={true}
+      className="w-full h-[80vh]"
+    >
+      {/* Slide 1 */}
+      <SwiperSlide>
+        <div
+          className="hero h-full"
+          style={{
+            backgroundImage:
+              "url(https://images.unsplash.com/photo-1500530855697-b586d89ba3ee)",
+          }}
+        >
+          <div className="hero-overlay bg-opacity-60"></div>
+
+          <Container>
             <div className="hero-content text-center text-neutral-content">
               <div className="max-w-md">
                 <h1 className="mb-5 text-4xl font-bold">
@@ -38,19 +39,21 @@ const HeroSlider = () => {
                 </p>
               </div>
             </div>
-          </div>
-        </SwiperSlide>
+          </Container>
+        </div>
+      </SwiperSlide>
 
-        {/* Slide 2 */}
-        <SwiperSlide>
-          <div
-            className="hero h-full"
-            style={{
-              backgroundImage:
-                "url(https://images.unsplash.com/photo-1494173853739-c21f58b16055)",
-            }}
-          >
-            <div className="hero-overlay bg-opacity-60"></div>
+      {/* Slide 2 */}
+      <SwiperSlide>
+        <div
+          className="hero h-full"
+          style={{
+            backgroundImage:
+              "url(https://images.unsplash.com/photo-1494173853739-c21f58b16055)",
+          }}
+        >
+          <div className="hero-overlay bg-opacity-60"></div>
+          <Container>
             <div className="hero-content text-center text-neutral-content">
               <div className="max-w-md">
                 <h1 className="mb-5 text-4xl font-bold">
@@ -62,19 +65,21 @@ const HeroSlider = () => {
                 </p>
               </div>
             </div>
-          </div>
-        </SwiperSlide>
+          </Container>
+        </div>
+      </SwiperSlide>
 
-        {/* Slide 3 */}
-        <SwiperSlide>
-          <div
-            className="hero h-full"
-            style={{
-              backgroundImage:
-                "url(https://images.unsplash.com/photo-1529333166437-7750a6dd5a70)",
-            }}
-          >
-            <div className="hero-overlay bg-opacity-60"></div>
+      {/* Slide 3 */}
+      <SwiperSlide>
+        <div
+          className="hero h-full"
+          style={{
+            backgroundImage:
+              "url(https://images.unsplash.com/photo-1529333166437-7750a6dd5a70)",
+          }}
+        >
+          <div className="hero-overlay bg-opacity-60"></div>
+          <Container>
             <div className="hero-content text-center text-neutral-content">
               <div className="max-w-md">
                 <h1 className="mb-5 text-4xl font-bold">
@@ -86,10 +91,10 @@ const HeroSlider = () => {
                 </p>
               </div>
             </div>
-          </div>
-        </SwiperSlide>
-      </Swiper>
-    </Container>
+          </Container>
+        </div>
+      </SwiperSlide>
+    </Swiper>
   );
 };
 

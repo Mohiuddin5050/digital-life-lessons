@@ -14,16 +14,15 @@ const Navbar = () => {
       <li>
         <NavLink to="/">Home</NavLink>
       </li>
-
+      <li>
+        <NavLink to="/dashboard/add-lesson">Add Lesson</NavLink>
+      </li>
       <li>
         <NavLink to="/public-lessons">Public Lessons</NavLink>
       </li>
 
       {user && (
         <>
-          <li>
-            <NavLink to="/dashboard/add-lesson">Add Lesson</NavLink>
-          </li>
           <li>
             <NavLink to="/dashboard/my-lessons">My Lessons</NavLink>
           </li>
@@ -66,7 +65,10 @@ const Navbar = () => {
         <div className="navbar-end">
           {user ? (
             <div className="dropdown dropdown-end">
-              <label tabIndex={0} className="btn btn-ghost flex items-center gap-2">
+              <label
+                tabIndex={0}
+                className="btn btn-ghost flex items-center gap-2"
+              >
                 <img
                   src={user.photoURL || "https://via.placeholder.com/40"}
                   alt="avatar"
