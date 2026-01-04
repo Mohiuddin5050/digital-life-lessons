@@ -1,12 +1,15 @@
 import { Link, NavLink } from "react-router";
 import useAuth from "../../../hooks/useAuth";
 import Container from "../../../components/Container";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
 
   const handleLogout = () => {
-    logOut().catch(console.error);
+    logOut().then(() => {
+      toast.success("Log out successfully");
+    }).catch(console.error);
   };
 
   const navLinks = (

@@ -35,10 +35,7 @@ export const router = createBrowserRouter([
         path: "public-lessons",
         Component: PublicLesson,
       },
-      {
-        path: "dashboard/add-lesson",
-        Component: AddLesson,
-      },
+
       {
         path: "lessons/:id",
         element: (
@@ -56,5 +53,11 @@ export const router = createBrowserRouter([
         <DashboardLayout></DashboardLayout>
       </PrivetRoute>
     ),
+    children: [
+      {
+        path: "add-lesson",
+        Component: AddLesson,
+      },
+    ],
   },
 ]);

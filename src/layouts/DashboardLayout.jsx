@@ -1,7 +1,16 @@
 import React from "react";
 import useStatus from "../hooks/useStatus";
 import LoadingSpinner from "../components/LoadingSpinner";
-import { Outlet } from "react-router";
+import { Link, Outlet } from "react-router";
+import { CgProfile } from "react-icons/cg";
+import { FaHome } from "react-icons/fa";
+import { MdOutlineNoteAdd } from "react-icons/md";
+import { RiHeartsFill } from "react-icons/ri";
+import { PiNotebook } from "react-icons/pi";
+import { LiaUsersSolid } from "react-icons/lia";
+import { LuNotebook } from "react-icons/lu";
+import { TbMessageReport } from "react-icons/tb";
+import { IoSettingsSharp } from "react-icons/io5";
 
 const DashboardLayout = () => {
   const { role, userLoading } = useStatus();
@@ -12,7 +21,7 @@ const DashboardLayout = () => {
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
-       <div className="drawer-content">
+      <div className="drawer-content">
         {/* Navbar */}
         <nav className="navbar w-full bg-base-300">
           <label
@@ -41,7 +50,158 @@ const DashboardLayout = () => {
         {/* Page content here */}
         <Outlet />
       </div>
+      <div className="drawer-side is-drawer-close:overflow-visible">
+        <label
+          htmlFor="my-drawer-4"
+          aria-label="close sidebar"
+          className="drawer-overlay"
+        ></label>
+        <div className="flex min-h-full flex-col items-start bg-base-300 is-drawer-close:w-14 is-drawer-open:w-64">
+          {/* Sidebar content here */}
+          <ul className="menu w-full grow space-y-2">
+            {/* List item */}
+            {/* Dashboard drawer menu bar logo */}
+            {/* <li>
+              <Link to="/">
+                <img src={logo} alt="" className="w-10" />
+              </Link>
+            </li> */}
 
+            {/* Dashboard Home */}
+            <li>
+              <Link
+                to="/dashboard"
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip="Home Page"
+              >
+                {/* Home icon */}
+                <FaHome size={20} />
+                <span className="is-drawer-close:hidden">Home Page</span>
+              </Link>
+            </li>
+
+            {/* Profile */}
+            <li>
+              <Link
+                to="/dashboard/profile"
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip="My Profile"
+              >
+                {/* Profile icon */}
+                <CgProfile size={20} />
+                <span className="is-drawer-close:hidden">My Profile</span>
+              </Link>
+            </li>
+
+            {/* Add Lesson  */}
+            <li>
+              <Link
+                to="/dashboard/add-lesson"
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip="Add Lesson"
+              >
+                {/* Add Lesson icon */}
+                <MdOutlineNoteAdd size={20} />
+
+                <span className="is-drawer-close:hidden">Add Lesson</span>
+              </Link>
+            </li>
+
+            {/* My Lesson  */}
+            <li>
+              <Link
+                to="/dashboard/my-lessons"
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip="My Lessons"
+              >
+                {/* My Lesson icon */}
+                <PiNotebook size={20} />
+
+                <span className="is-drawer-close:hidden">My Lessons</span>
+              </Link>
+            </li>
+
+            {/* My Favorites  */}
+            <li>
+              <Link
+                to="/dashboard/my-favorites"
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip="My Favorites"
+              >
+                {/* My Lesson icon */}
+                <RiHeartsFill size={20} />
+
+                <span className="is-drawer-close:hidden">My Favorites</span>
+              </Link>
+            </li>
+
+            {/* Admin Access Only */}
+            {role === "admin" && (
+              <>
+                <span className="h-0.5 w-full bg-gray-300"></span>
+                {/* Manage User  */}
+                <li>
+                  <Link
+                    to="/dashboard/admin/manage-users"
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Manage Users"
+                  >
+                    {/* Manage Users icon */}
+                    <LiaUsersSolid size={20} />
+
+                    <span className="is-drawer-close:hidden">Manage Users</span>
+                  </Link>
+                </li>
+
+                {/* Manage Lessons  */}
+                <li>
+                  <Link
+                    to="/dashboard/admin/manage-lessons"
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Manage Lessons"
+                  >
+                    {/* Manage Lessons icon */}
+                    <LuNotebook size={20} />
+                    <span className="is-drawer-close:hidden">
+                      Manage Lessons
+                    </span>
+                  </Link>
+                </li>
+
+                {/* Reported Lesson  */}
+                <li>
+                  <Link
+                    to="/dashboard/admin/reported-lessons"
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Reported Lesson"
+                  >
+                    {/* Reported Lesson icon */}
+                    <TbMessageReport size={20} />
+                    <span className="is-drawer-close:hidden">
+                      Reported Lesson
+                    </span>
+                  </Link>
+                </li>
+              </>
+            )}
+
+            {/* Settings */}
+            <span className="h-0.5 w-full bg-gray-300"></span>
+            <li>
+              <Link
+                to={"/dashboard/settings"}
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip="Settings"
+              >
+                {/* Settings icon */}
+                <IoSettingsSharp size={20} />
+
+                <span className="is-drawer-close:hidden">Settings</span>
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   );
 };

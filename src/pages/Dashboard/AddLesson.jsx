@@ -65,168 +65,292 @@ const AddLesson = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-10">
-      <h2 className="font-bold text-2xl md:text-4xl text-center mb-8">
-        Add A Life Lesson
-      </h2>
+    // <div className="max-w-4xl mx-auto px-4 py-10">
+    //   <h2 className="font-bold text-2xl md:text-4xl text-center mb-8">
+    //     Add A Life Lesson
+    //   </h2>
 
-      <form onSubmit={handleSubmit(handleAddLesson)} className="text-black!">
-        <div className="grid grid-cols-1 md:grid-cols-2 md:gap-12">
-          {/* Left Side Lesson Title And Description */}
-          <div>
-            <fieldset className="fieldset">
-              {/* Lesson Title */}
-              <label className="label">Lesson Title</label>
-              <input
-                type="text"
-                className="input w-full"
-                placeholder="Type your lesson title"
-                {...register("lessonTitle", { required: true })}
-              />
-              {errors.lessonTitle?.type === "required" && (
-                <p className="text-red-500">Add a lesson title</p>
-              )}
+    //   <form onSubmit={handleSubmit(handleAddLesson)} className="text-black!">
+    //     <div className="grid grid-cols-1 md:grid-cols-2 md:gap-12">
+    //       {/* Left Side Lesson Title And Description */}
+    //       <div>
+    //         <fieldset className="fieldset">
+    //           {/* Lesson Title */}
+    //           <label className="label">Lesson Title</label>
+    //           <input
+    //             type="text"
+    //             className="input w-full"
+    //             placeholder="Type your lesson title"
+    //             {...register("lessonTitle", { required: true })}
+    //           />
+    //           {errors.lessonTitle?.type === "required" && (
+    //             <p className="text-red-500">Add a lesson title</p>
+    //           )}
 
-              {/* Category  */}
-              <label className="label">Category</label>
-              <select
-                defaultValue=""
-                className="select w-full"
-                {...register("category", { required: true })}
-              >
-                <option value="" disabled={true}>
-                  Select Category
-                </option>
-                <option value="personalGrowth"> Personal Growth </option>
-                <option value="career"> Career </option>
-                <option value="relationships"> Relationships </option>
-                <option value="mindset"> Mindset </option>
-                <option value="mistakesLearned"> Mistakes Learned </option>
-              </select>
-              {errors.category?.type === "required" && (
-                <p className="text-red-500">Select a category</p>
-              )}
+    //           {/* Category  */}
+    //           <label className="label">Category</label>
+    //           <select
+    //             defaultValue=""
+    //             className="select w-full"
+    //             {...register("category", { required: true })}
+    //           >
+    //             <option value="" disabled={true}>
+    //               Select Category
+    //             </option>
+    //             <option value="personalGrowth"> Personal Growth </option>
+    //             <option value="career"> Career </option>
+    //             <option value="relationships"> Relationships </option>
+    //             <option value="mindset"> Mindset </option>
+    //             <option value="mistakesLearned"> Mistakes Learned </option>
+    //           </select>
+    //           {errors.category?.type === "required" && (
+    //             <p className="text-red-500">Select a category</p>
+    //           )}
 
-              {/* Emotional Tone  */}
-              <label className="label">Emotional Tone</label>
-              <select
-                defaultValue=""
-                className="select w-full"
-                {...register("emotionalTone", { required: true })}
-              >
-                <option value="" disabled={true}>
-                  Select A Emotional Tone
-                </option>
-                <option value="sad"> Sad </option>
-                <option value="gratitude"> Gratitude </option>
-                <option value="motivational"> Motivational </option>
-                <option value="realization"> Realization </option>
-              </select>
-              {errors.emotionalTone?.type === "required" && (
-                <p className="text-red-500">Select a emotional tone</p>
-              )}
+    //           {/* Emotional Tone  */}
+    //           <label className="label">Emotional Tone</label>
+    //           <select
+    //             defaultValue=""
+    //             className="select w-full"
+    //             {...register("emotionalTone", { required: true })}
+    //           >
+    //             <option value="" disabled={true}>
+    //               Select A Emotional Tone
+    //             </option>
+    //             <option value="sad"> Sad </option>
+    //             <option value="gratitude"> Gratitude </option>
+    //             <option value="motivational"> Motivational </option>
+    //             <option value="realization"> Realization </option>
+    //           </select>
+    //           {errors.emotionalTone?.type === "required" && (
+    //             <p className="text-red-500">Select a emotional tone</p>
+    //           )}
 
-              {/*Lesson Privacy   */}
-              <label className="label">Lesson Privacy</label>
-              <select
-                defaultValue=""
-                className="select w-full"
-                {...register("privacy", { required: true })}
-              >
-                <option value="" disabled={true}>
-                  Select Lesson Privacy
-                </option>
-                <option value="public"> Public </option>
-                <option value="private">Private</option>
-              </select>
-              {errors.privacy?.type === "required" && (
-                <p className="text-red-500">Select lesson privacy</p>
-              )}
+    //           {/*Lesson Privacy   */}
+    //           <label className="label">Lesson Privacy</label>
+    //           <select
+    //             defaultValue=""
+    //             className="select w-full"
+    //             {...register("privacy", { required: true })}
+    //           >
+    //             <option value="" disabled={true}>
+    //               Select Lesson Privacy
+    //             </option>
+    //             <option value="public"> Public </option>
+    //             <option value="private">Private</option>
+    //           </select>
+    //           {errors.privacy?.type === "required" && (
+    //             <p className="text-red-500">Select lesson privacy</p>
+    //           )}
 
-              {/*Access Level */}
-              <label className="label">Access Level </label>
-              <select
-                defaultValue=""
-                className="select w-full"
-                {...register("accessLevel", { required: true })}
-              >
-                <option value="" disabled={true}>
-                  Select Access Level
-                </option>
-                <option value="free">Free</option>
-                <option
-                  value="paid"
-                  disabled={!isPremium}
-                  className={!isPremium ? "tooltip tooltip-right" : ""}
-                  data-tip={
-                    !isPremium
-                      ? "Upgrade to Premium to create paid lessons."
-                      : ""
-                  }
+    //           {/*Access Level */}
+    //           <label className="label">Access Level </label>
+    //           <select
+    //             defaultValue=""
+    //             className="select w-full"
+    //             {...register("accessLevel", { required: true })}
+    //           >
+    //             <option value="" disabled={true}>
+    //               Select Access Level
+    //             </option>
+    //             <option value="free">Free</option>
+    //             <option
+    //               value="paid"
+    //               disabled={!isPremium}
+    //               className={!isPremium ? "tooltip tooltip-right" : ""}
+    //               data-tip={
+    //                 !isPremium
+    //                   ? "Upgrade to Premium to create paid lessons."
+    //                   : ""
+    //               }
+    //             >
+    //               Paid
+    //             </option>
+    //           </select>
+    //           {errors.accessLevel?.type === "required" && (
+    //             <p className="text-red-500">Select access level </p>
+    //           )}
+    //         </fieldset>
+    //       </div>
+
+    //       {/* Right Side Lesson others Filed */}
+    //       <div>
+    //         <fieldset className="fieldset">
+    //           {/*Lesson Images Input and show */}
+    //           <div className="">
+    //             {/* Lesson Image */}
+    //             <label className="label">Image</label>
+    //             <br />
+    //             <input
+    //               type="file"
+    //               {...register("lessonImg", { required: true })}
+    //               className="file-input mt-1"
+    //               placeholder=""
+    //             />
+    //             {errors.lessonImg?.type === "required" && (
+    //               <p className="text-red-500">Image is required</p>
+    //             )}
+
+    //             {/* Show selected Img */}
+    //             {/* <div>
+    //               {viewImage && (
+    //                 <img
+    //                   src={viewImage}
+    //                   alt=""
+    //                   className="h-50 w-50 object-cover object-center rounded-lg"
+    //                 />
+    //               )}
+    //             </div> */}
+    //           </div>
+
+    //           {/* Lesson Description  */}
+    //           <div>
+    //             <label className="label">Lesson Description</label>
+    //             <textarea
+    //               className="textarea h-50! w-full mt-1"
+    //               placeholder="Type your story"
+    //               {...register("lessonDesc", { required: true })}
+    //             />
+    //             {errors.lessonDesc?.type === "required" && (
+    //               <p className="text-red-500">Write your story</p>
+    //             )}
+    //           </div>
+    //         </fieldset>
+    //       </div>
+    //     </div>
+    //     {/* Form Submit Button */}
+    //     <div className="text-center">
+    //       <input
+    //         type="submit"
+    //         value="Create a new life lesson"
+    //         className="btn btn-primary mt-5"
+    //       />
+    //     </div>
+    //   </form>
+    // </div>
+    <div className="max-w-5xl mx-auto px-4 py-12">
+      <div className="bg-base-100 shadow-xl rounded-2xl p-6 md:p-10">
+        <h2 className="text-2xl md:text-4xl font-bold text-center mb-10">
+          Add a Life Lesson
+        </h2>
+
+        <form onSubmit={handleSubmit(handleAddLesson)}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* LEFT COLUMN */}
+            <div className="space-y-5">
+              <div>
+                <label className="label font-medium">Lesson Title</label>
+                <input
+                  type="text"
+                  className="input input-bordered w-full"
+                  placeholder="Enter lesson title"
+                  {...register("lessonTitle", { required: true })}
+                />
+                {errors.lessonTitle && (
+                  <p className="text-red-500 text-sm mt-1">
+                    Lesson title is required
+                  </p>
+                )}
+              </div>
+
+              <div>
+                <label className="label font-medium">Category</label>
+                <select
+                  className="select select-bordered w-full"
+                  {...register("category", { required: true })}
                 >
-                  Paid
-                </option>
-              </select>
-              {errors.accessLevel?.type === "required" && (
-                <p className="text-red-500">Select access level </p>
-              )}
-            </fieldset>
-          </div>
+                  <option value="">Select category</option>
+                  <option value="personalGrowth">Personal Growth</option>
+                  <option value="career">Career</option>
+                  <option value="relationships">Relationships</option>
+                  <option value="mindset">Mindset</option>
+                  <option value="mistakesLearned">Mistakes Learned</option>
+                </select>
+                {errors.category && (
+                  <p className="text-red-500 text-sm mt-1">
+                    Category is required
+                  </p>
+                )}
+              </div>
 
-          {/* Right Side Lesson others Filed */}
-          <div>
-            <fieldset className="fieldset">
-              {/*Lesson Images Input and show */}
-              <div className="">
-                {/* Lesson Image */}
-                <label className="label">Image</label>
-                <br />
+              <div>
+                <label className="label font-medium">Emotional Tone</label>
+                <select
+                  className="select select-bordered w-full"
+                  {...register("emotionalTone", { required: true })}
+                >
+                  <option value="">Select tone</option>
+                  <option value="sad">Sad</option>
+                  <option value="gratitude">Gratitude</option>
+                  <option value="motivational">Motivational</option>
+                  <option value="realization">Realization</option>
+                </select>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="label font-medium">Privacy</label>
+                  <select
+                    className="select select-bordered w-full"
+                    {...register("privacy", { required: true })}
+                  >
+                    <option value="">Select</option>
+                    <option value="public">Public</option>
+                    <option value="private">Private</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="label font-medium">Access Level</label>
+                  <select
+                    className="select select-bordered w-full"
+                    {...register("accessLevel", { required: true })}
+                  >
+                    <option value="">Select</option>
+                    <option value="free">Free</option>
+                    <option value="paid" disabled={!isPremium}>
+                      Paid {!isPremium && "(Premium only)"}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            {/* RIGHT COLUMN */}
+            <div className="space-y-5">
+              <div>
+                <label className="label font-medium">Lesson Image</label>
                 <input
                   type="file"
+                  className="file-input file-input-bordered w-full"
                   {...register("lessonImg", { required: true })}
-                  className="file-input mt-1"
-                  placeholder=""
                 />
-                {errors.lessonImg?.type === "required" && (
-                  <p className="text-red-500">Image is required</p>
+                {errors.lessonImg && (
+                  <p className="text-red-500 text-sm mt-1">Image is required</p>
                 )}
-
-                {/* Show selected Img */}
-                {/* <div>
-                  {viewImage && (
-                    <img
-                      src={viewImage}
-                      alt=""
-                      className="h-50 w-50 object-cover object-center rounded-lg"
-                    />
-                  )}
-                </div> */}
               </div>
 
-              {/* Lesson Description  */}
               <div>
-                <label className="label">Lesson Description</label>
+                <label className="label font-medium">Lesson Description</label>
                 <textarea
-                  className="textarea h-50! w-full mt-1"
-                  placeholder="Type your story"
+                  className="textarea textarea-bordered w-full min-h-[200px]"
+                  placeholder="Write your life lesson here..."
                   {...register("lessonDesc", { required: true })}
                 />
-                {errors.lessonDesc?.type === "required" && (
-                  <p className="text-red-500">Write your story</p>
+                {errors.lessonDesc && (
+                  <p className="text-red-500 text-sm mt-1">
+                    Description is required
+                  </p>
                 )}
               </div>
-            </fieldset>
+            </div>
           </div>
-        </div>
-        {/* Form Submit Button */}
-        <div className="text-center">
-          <input
-            type="submit"
-            value="Create a new life lesson"
-            className="btn btn-primary mt-5"
-          />
-        </div>
-      </form>
+
+          <div className="text-center mt-10">
+            <button className="btn btn-primary px-10">Create Lesson</button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
