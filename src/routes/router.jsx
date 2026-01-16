@@ -9,6 +9,7 @@ import AddLesson from "../pages/Dashboard/AddLesson";
 import LessonDetails from "../pages/PublicLesson/LessonDetails";
 import PrivetRoute from "./PrivetRoute";
 import DashboardLayout from "../layouts/DashboardLayout";
+import MyLessons from "../pages/Dashboard/MyLessons";
 
 export const router = createBrowserRouter([
   {
@@ -58,6 +59,11 @@ export const router = createBrowserRouter([
         path: "add-lesson",
         Component: AddLesson,
       },
+      {
+        path: "my-lessons",
+        Component: MyLessons,
+      },
+
     ],
   },
 ]);

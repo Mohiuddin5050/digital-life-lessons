@@ -1,7 +1,6 @@
 import React from 'react';
 
-const FeaturedLesson = () => {
-  
+const MyLessons = () => {
   return (
     <div>
       
@@ -9,4 +8,4 @@ const FeaturedLesson = () => {
   );
 };
 
-export default FeaturedLesson;
+export default MyLessons;

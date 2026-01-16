@@ -2,14 +2,26 @@ import { Link, NavLink } from "react-router";
 import useAuth from "../../../hooks/useAuth";
 import Container from "../../../components/Container";
 import { toast } from "react-toastify";
+import useStatus from "../../../hooks/useStatus";
+import LoadingSpinner from "../../../components/LoadingSpinner";
+import Logo from "../../../components/logo";
+import { CgProfile } from "react-icons/cg";
+import { MdOutlineDashboard } from "react-icons/md";
 
 const Navbar = () => {
-  const { user, logOut } = useAuth();
+  const { user, loading, logOut } = useAuth();
+  const { isPremium, useLoading } = useStatus();
+
+  if (loading || useLoading) {
+    return <LoadingSpinner />;
+  }
 
   const handleLogout = () => {
-    logOut().then(() => {
-      toast.success("Log out successfully");
-    }).catch(console.error);
+    logOut()
+      .then(() => {
+        toast.success("Log out successfully");
+      })
+      .catch(console.error);
   };
 
   const navLinks = (
@@ -29,9 +41,11 @@ const Navbar = () => {
           <li>
             <NavLink to="/dashboard/my-lessons">My Lessons</NavLink>
           </li>
-          <li>
-            <NavLink to="/pricing">Upgrade</NavLink>
-          </li>
+          {isPremium === false && (
+            <li>
+              <NavLink to="/pricing">Upgrade</NavLink>
+            </li>
+          )}
         </>
       )}
     </>
@@ -54,9 +68,7 @@ const Navbar = () => {
             </ul>
           </div>
 
-          <Link to="/" className="btn btn-ghost text-xl font-bold">
-            Digital Life Lessons
-          </Link>
+          <Logo />
         </div>
 
         {/* Center */}
@@ -68,33 +80,32 @@ const Navbar = () => {
         <div className="navbar-end">
           {user ? (
             <div className="dropdown dropdown-end">
-              <label
-                tabIndex={0}
-                className="btn btn-ghost flex items-center gap-2"
-              >
+              <label tabIndex={0} className="cursor-pointer">
                 <img
                   src={user.photoURL || "https://via.placeholder.com/40"}
                   alt="avatar"
-                  className="w-8 h-8 rounded-full border"
+                  className="w-10 h-10 rounded-full border"
                   referrerPolicy="no-referrer"
                 />
-                <span className="hidden md:block">
-                  {user.displayName || "User"}
-                </span>
               </label>
 
               <ul
                 tabIndex={0}
                 className="menu dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
               >
+                <li>{user.displayName || "User"}</li>
                 <li>
-                  <Link to="/dashboard/profile">Profile</Link>
+                  <Link to="/dashboard/profile">
+                    <CgProfile size={20} />
+                    <span className="is-drawer-close:hidden">Profile</span>
+                  </Link>
                 </li>
                 <li>
-                  <Link to="/dashboard">Dashboard</Link>
+                  <Link to="/dashboard"><MdOutlineDashboard size={20} />
+                    <span className="is-drawer-close:hidden">Dashboard</span></Link>
                 </li>
                 <li>
-                  <button onClick={handleLogout} className="text-red-500">
+                  <button onClick={handleLogout} className=" btn text-red-500">
                     Logout
                   </button>
                 </li>
