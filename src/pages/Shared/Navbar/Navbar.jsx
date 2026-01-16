@@ -93,7 +93,7 @@ const Navbar = () => {
                 tabIndex={0}
                 className="menu dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
               >
-                <li>{user.displayName || "User"}</li>
+                <li className="text-center">{user.displayName || "User"}</li>
                 <li>
                   <Link to="/dashboard/profile">
                     <CgProfile size={20} />

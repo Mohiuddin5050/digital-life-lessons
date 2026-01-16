@@ -4,14 +4,11 @@ import LessonCard from "../Lessons/LessonCard";
 
 const FeaturedLesson = () => {
   const axiosSecure = useAxiosSecure();
-  const limit = 3;
 
   const { data: lessons = [] } = useQuery({
-    queryKey: ["featuredPublicLessons", limit],
+    queryKey: ["featuredPublicLessons"],
     queryFn: async () => {
-      const res = await axiosSecure.get(
-        `/lessons?privacy=public&limit=${limit}`
-      );
+      const res = await axiosSecure.get(`/lessons`);
       return res.data;
     },
   });
@@ -27,7 +24,7 @@ const FeaturedLesson = () => {
       </p>
 
       <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-        {lessons.map((lesson, i) => (
+        {lessons.slice(0, 3).map((lesson, i) => (
           <LessonCard key={i} lesson={lesson}></LessonCard>
         ))}
       </div>
