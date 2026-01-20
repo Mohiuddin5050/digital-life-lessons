@@ -15,59 +15,63 @@ const AddLesson = () => {
     formState: { errors },
   } = useForm();
 
-  const { isPremium, useLoading } = useStatus();
+  const { isPremium, userLoading } = useStatus();
   const { user, loading } = useAuth();
   const axiosSecure = useAxiosSecure();
 
-  if (useLoading || loading) {
+  if (userLoading || loading) {
     return <LoadingSpinner />;
   }
 
   const handleAddLesson = async (data) => {
-    console.log(data);
-    //store the image and get the Photo url
-    let lessonImage = "";
-    const selectedFile = data.lessonImg?.[0];
-    
+    try {
+      let lessonImage = "";
+      const selectedFile = data.lessonImg?.[0];
 
-    // Upload only if image exists
-    if (selectedFile) {
-      const formData = new FormData();
-      formData.append("image", selectedFile);
-      const image_API_URL = `https://api.imgbb.com/1/upload?key=${
-        import.meta.env.VITE_img_host
-      }`;
+      // Upload image if exists
+      if (selectedFile) {
+        const formData = new FormData();
+        formData.append("image", selectedFile);
 
-      await axios.post(image_API_URL, formData).then((res) => {
-        const photoURL = res.data.data.url;
-        lessonImage = photoURL;
-      });
-    }
+        const image_API_URL = `https://api.imgbb.com/1/upload?key=${
+          import.meta.env.VITE_img_host
+        }`;
 
-    // Save the Lesson to the data base
-
-    const lessonData = {
-      ...data,
-      lessonImage,
-      createdBy: user.email,
-    };
-
-    await axiosSecure.post("/lessons", lessonData).then((res) => {
-      if (res.data.insertedId) {
-        toast.success("Lesson Created Successfully");
-        // Show Lottie animation
-        // setShowAnimation(true);
-        // Hide after 2 seconds
-        // setTimeout(() => setShowAnimation(false), 5500);
+        const res = await axios.post(image_API_URL, formData);
+        lessonImage = res.data.data.url;
       }
-    });
 
-    // Reset the form
-    reset();
+      const lessonData = {
+        lessonTitle: data.lessonTitle,
+        category: data.category,
+        emotionalTone: data.emotionalTone,
+
+        privacy: data.privacy,
+        accessLevel: data.accessLevel,
+
+        lessonDesc: data.lessonDesc,
+        lessonImage,
+        createdBy: user.email,
+
+        isFeatured: false,
+        createdAt: new Date(),
+
+        likes: [],
+        likesCount: 0,
+        favoritesCount: 0,
+      };
+
+      await axiosSecure.post("/lessons", lessonData);
+
+      toast.success("Lesson Created Successfully");
+      reset();
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to create lesson");
+    }
   };
 
   return (
-  
     <div className="max-w-5xl mx-auto px-4 py-12">
       <div className="bg-base-100 shadow-xl rounded-2xl p-6 md:p-10">
         <h2 className="text-2xl md:text-4xl font-bold text-center mb-10">
@@ -76,7 +80,7 @@ const AddLesson = () => {
 
         <form onSubmit={handleSubmit(handleAddLesson)}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* LEFT COLUMN */}
+            {/* LEFT */}
             <div className="space-y-5">
               <div>
                 <label className="label font-medium">Lesson Title</label>
@@ -87,7 +91,7 @@ const AddLesson = () => {
                   {...register("lessonTitle", { required: true })}
                 />
                 {errors.lessonTitle && (
-                  <p className="text-red-500 text-sm mt-1">
+                  <p className="text-red-500 text-sm">
                     Lesson title is required
                   </p>
                 )}
@@ -106,11 +110,6 @@ const AddLesson = () => {
                   <option value="mindset">Mindset</option>
                   <option value="mistakesLearned">Mistakes Learned</option>
                 </select>
-                {errors.category && (
-                  <p className="text-red-500 text-sm mt-1">
-                    Category is required
-                  </p>
-                )}
               </div>
 
               <div>
@@ -148,26 +147,23 @@ const AddLesson = () => {
                   >
                     <option value="">Select</option>
                     <option value="free">Free</option>
-                    <option value="paid" disabled={!isPremium}>
-                      Paid {!isPremium && "(Premium only)"}
+                    <option value="premium" disabled={!isPremium}>
+                      Premium {!isPremium && "(Premium only)"}
                     </option>
                   </select>
                 </div>
               </div>
             </div>
 
-            {/* RIGHT COLUMN */}
+            {/* RIGHT */}
             <div className="space-y-5">
               <div>
                 <label className="label font-medium">Lesson Image</label>
                 <input
                   type="file"
                   className="file-input file-input-bordered w-full"
-                  {...register("lessonImg", { required: true })}
+                  {...register("lessonImg")}
                 />
-                {errors.lessonImg && (
-                  <p className="text-red-500 text-sm mt-1">Image is required</p>
-                )}
               </div>
 
               <div>
@@ -178,7 +174,7 @@ const AddLesson = () => {
                   {...register("lessonDesc", { required: true })}
                 />
                 {errors.lessonDesc && (
-                  <p className="text-red-500 text-sm mt-1">
+                  <p className="text-red-500 text-sm">
                     Description is required
                   </p>
                 )}
