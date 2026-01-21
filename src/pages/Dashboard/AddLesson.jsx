@@ -148,7 +148,7 @@ const AddLesson = () => {
                     <option value="">Select</option>
                     <option value="free">Free</option>
                     <option value="premium" disabled={!isPremium}>
-                      Premium {!isPremium && "(Premium only)"}
+                      Paid 
                     </option>
                   </select>
                 </div>

@@ -85,15 +85,15 @@ const LessonCard = ({ lesson }) => {
         </span>
       </div>
 
-      <h3 className="text-lg font-bold mt-3">{limitText(lessonTitle, 40)}</h3>
+      <h3 className="text-lg font-bold mt-3">{limitText(lessonTitle, 18)}</h3>
 
-      <p className="text-sm mt-1 text-gray-600">{limitText(lessonDesc, 90)}</p>
+      <p className="text-sm mt-1 text-gray-600">{limitText(lessonDesc, 70)}</p>
 
       <div className="flex items-center gap-3 mt-4 pt-4 border-t">
         <img
           src={user[0]?.photoURL || user1}
           alt="Author"
-          className="w-12 h-12 rounded border border-primary"
+          className="w-12 h-12"
         />
         <div>
           <p className="font-semibold text-sm">

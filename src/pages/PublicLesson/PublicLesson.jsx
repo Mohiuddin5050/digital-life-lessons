@@ -1,216 +1,159 @@
 import React, { useState, useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import useStatus from "../../hooks/useStatus";
-import { Link } from "react-router";
-import { FaLock } from "react-icons/fa";
 import LoadingSpinner from "../../components/LoadingSpinner";
+import LessonCard from "../Lessons/LessonCard";
 
 const PublicLesson = () => {
   const axiosSecure = useAxiosSecure();
-  const { isPremium } = useStatus() || {};
 
-  // States
+  // UI states
   const [searchText, setSearchText] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("");
-  const [sortOrder, setSortOrder] = useState("newest");
+  const [toneFilter, setToneFilter] = useState("");
+  const [sortBy, setSortBy] = useState("newest");
   const [currentPage, setCurrentPage] = useState(1);
 
   const itemsPerPage = 6;
 
-  // Fetch lessons
+  // fetch public lessons
   const { data: lessons = [], isLoading } = useQuery({
     queryKey: ["publicLessons"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/lessons");
-      return res.data.filter((item) => item.visibility === "public");
+      const res = await axiosSecure.get("/lessons?privacy=public");
+      return res.data;
     },
   });
 
-  // loading state
-  if (isLoading) return <LoadingSpinner />;
-
-  // ---------- PROCESSING DATA ----------
+  // ---------- FILTER + SEARCH + SORT ----------
   const processedLessons = useMemo(() => {
-    let filtered = [...lessons];
+    let data = [...lessons];
 
-    // search
+    // search (title + description)
     if (searchText) {
-      filtered = filtered.filter((l) =>
-        l.title?.toLowerCase().includes(searchText.toLowerCase())
-      );
+      const text = searchText.toLowerCase();
+      data = data.filter((l) => l.lessonTitle?.toLowerCase().includes(text));
     }
 
     // category filter
     if (categoryFilter) {
-      filtered = filtered.filter((l) => l.category === categoryFilter);
+      data = data.filter((l) => l.category === categoryFilter);
     }
 
-    // sort
-    filtered.sort((a, b) => {
-      if (sortOrder === "newest") {
-        return new Date(b.createdAt) - new Date(a.createdAt);
-      } else {
-        return new Date(a.createdAt) - new Date(b.createdAt);
-      }
-    });
+    // emotional tone filter
+    if (toneFilter) {
+      data = data.filter((l) => l.emotionalTone === toneFilter);
+    }
 
-    return filtered;
-  }, [lessons, searchText, categoryFilter, sortOrder]);
+    // sorting
+    if (sortBy === "newest") {
+      data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    }
+
+    if (sortBy === "saved") {
+      data.sort((a, b) => (b.favoritesCount || 0) - (a.favoritesCount || 0));
+    }
+
+    return data;
+  }, [lessons, searchText, categoryFilter, toneFilter, sortBy]);
+
+  if (isLoading) return <LoadingSpinner />;
 
   // ---------- PAGINATION ----------
   const totalPages = Math.ceil(processedLessons.length / itemsPerPage);
   const paginatedLessons = processedLessons.slice(
     (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
+    currentPage * itemsPerPage,
   );
 
   return (
-    <div className="max-w-6xl mx-auto p-4">
-      <h2 className="text-2xl font-semibold mb-4">
-        Browse Public Life Lessons
+    <div className="max-w-7xl mx-auto px-4 py-10">
+      <h2 className="text-3xl font-bold mb-6 text-center">
+        Public Life Lessons
       </h2>
 
-      {/* -------- Controls -------- */}
-      <div className="flex flex-wrap gap-3 mb-5">
-        {/* search */}
+      {/* ---------- Controls ---------- */}
+      <div className="flex flex-wrap gap-3 mb-6 justify-center">
         <input
           type="text"
-          placeholder="Search lesson title"
-          className="input input-bordered"
+          placeholder="Search by title or keyword"
+          className="input input-bordered w-64"
           value={searchText}
-          onChange={(e) => setSearchText(e.target.value)}
+          onChange={(e) => {
+            setSearchText(e.target.value);
+            setCurrentPage(1);
+          }}
         />
 
-        {/* category filter */}
         <select
           className="select select-bordered"
           value={categoryFilter}
-          onChange={(e) => setCategoryFilter(e.target.value)}
+          onChange={(e) => {
+            setCategoryFilter(e.target.value);
+            setCurrentPage(1);
+          }}
         >
           <option value="">All Categories</option>
           <option value="personalGrowth">Personal Growth</option>
           <option value="career">Career</option>
-          <option value="relationship">Relationship</option>
-          <option value="motivational">Motivational</option>
-          <option value="health">Health</option>
+          <option value="relationships">Relationships</option>
+          <option value="mindset">Mindset</option>
+          <option value="mistakesLearned">Mistakes Learned</option>
         </select>
 
-        {/* sort dropdown */}
         <select
           className="select select-bordered"
-          value={sortOrder}
-          onChange={(e) => setSortOrder(e.target.value)}
+          value={toneFilter}
+          onChange={(e) => {
+            setToneFilter(e.target.value);
+            setCurrentPage(1);
+          }}
         >
-          <option value="newest">Newest First</option>
-          <option value="oldest">Oldest First</option>
+          <option value="">All Emotions</option>
+          <option value="motivational">Motivational</option>
+          <option value="realization">Realization</option>
+          <option value="gratitude">Gratitude</option>
+          <option value="sad">Sad</option>
+        </select>
+
+        <select
+          className="select select-bordered"
+          value={sortBy}
+          onChange={(e) => setSortBy(e.target.value)}
+        >
+          <option value="oldest">Oldest</option>
+          <option value="newest">Newest</option>
+          <option value="saved">Most Saved</option>
         </select>
       </div>
 
-      {/* -------- Lesson Cards -------- */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {paginatedLessons.map((lesson) => {
-          const locked =
-            lesson.accessLevel === "premium" && !isPremium;
+      {/* ---------- Lessons ---------- */}
+      {paginatedLessons.length === 0 ? (
+        <p className="text-center text-gray-500">No lessons found</p>
+      ) : (
+        <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+          {paginatedLessons.map((lesson) => (
+            <LessonCard key={lesson._id} lesson={lesson} />
+          ))}
+        </div>
+      )}
 
-          return (
-            <div key={lesson._id} className="relative">
-              <div
-                className={`border rounded-2xl p-4 shadow bg-white min-h-[360px] ${
-                  locked ? "blur-[2px] opacity-60 pointer-events-none" : ""
-                }`}
-              >
-                <img
-                  src={lesson.lessonImage || "https://via.placeholder.com/400"}
-                  className="w-full h-44 object-cover rounded-xl mb-3"
-                  alt=""
-                />
-
-                <div className="flex flex-wrap gap-2 mb-2">
-                  <span className="badge badge-info">{lesson.category}</span>
-                  <span className="badge badge-secondary">
-                    {lesson.emotionalTone}
-                  </span>
-                  <span
-                    className={`badge ${
-                      lesson.accessLevel === "premium"
-                        ? "badge-warning"
-                        : "badge-success"
-                    }`}
-                  >
-                    {lesson.accessLevel}
-                  </span>
-                  <span className="badge badge-primary">Public</span>
-                </div>
-
-                <h3 className="font-semibold text-lg">
-                  {lesson.title?.slice(0, 25)}...
-                </h3>
-
-                <p className="text-sm text-gray-600 mt-1">
-                  {lesson.shortDescription?.slice(0, 110)}...
-                </p>
-
-                <div className="flex items-center gap-2 mt-3">
-                  <img
-                    src={lesson.creator?.photoUrl || "https://i.pravatar.cc/150"}
-                    className="w-8 h-8 rounded-full"
-                    alt=""
-                  />
-                  <div>
-                    <p className="text-sm">{lesson.creator?.name}</p>
-                    <p className="text-xs text-gray-500">
-                      Created:{" "}
-                      {new Date(lesson.createdAt).toLocaleDateString()}
-                    </p>
-                  </div>
-                </div>
-
-                <Link
-                  to={`/lessons/${lesson._id}`}
-                  className="btn btn-primary w-full mt-3"
-                >
-                  See Details
-                </Link>
-              </div>
-
-              {locked && (
-                <div className="absolute inset-0 flex flex-col gap-2 items-center justify-center">
-                  <FaLock size={28} className="text-yellow-500" />
-                  <p className="font-medium">
-                    Premium Lesson – Upgrade to view
-                  </p>
-                  <Link
-                    to="/pricing"
-                    className="px-4 py-2 rounded-full text-white"
-                    style={{
-                      background:
-                        "linear-gradient(90deg,#ff006a,#ff8a00,#ffd700)",
-                    }}
-                  >
-                    Upgrade Membership
-                  </Link>
-                </div>
-              )}
-            </div>
-          );
-        })}
-      </div>
-
-      {/* -------- Pagination Buttons -------- */}
-      <div className="flex justify-center gap-2 mt-6">
-        {[...Array(totalPages).keys()].map((num) => (
-          <button
-            key={num}
-            onClick={() => setCurrentPage(num + 1)}
-            className={`btn btn-sm ${
-              currentPage === num + 1 ? "btn-primary" : ""
-            }`}
-          >
-            {num + 1}
-          </button>
-        ))}
-      </div>
+      {/* ---------- Pagination ---------- */}
+      {totalPages > 1 && (
+        <div className="flex justify-center gap-2 mt-8">
+          {[...Array(totalPages).keys()].map((num) => (
+            <button
+              key={num}
+              onClick={() => setCurrentPage(num + 1)}
+              className={`btn btn-sm ${
+                currentPage === num + 1 ? "btn-primary" : "btn-outline"
+              }`}
+            >
+              {num + 1}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
