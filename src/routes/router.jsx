@@ -10,6 +10,7 @@ import LessonDetails from "../pages/PublicLesson/LessonDetails";
 import PrivetRoute from "./PrivetRoute";
 import DashboardLayout from "../layouts/DashboardLayout";
 import MyLessons from "../pages/Dashboard/MyLessons";
+import UpgradeMembership from "../pages/Payment/UpgradeMembership";
 
 export const router = createBrowserRouter([
   {
@@ -35,6 +36,14 @@ export const router = createBrowserRouter([
       {
         path: "public-lessons",
         Component: PublicLesson,
+      },
+      {
+        path: "upgrade-membership",
+        element: (
+          <PrivetRoute>
+            <UpgradeMembership />
+          </PrivetRoute>
+        ),
       },
 
       {
@@ -63,7 +72,6 @@ export const router = createBrowserRouter([
         path: "my-lessons",
         Component: MyLessons,
       },
-
     ],
   },
 ]);

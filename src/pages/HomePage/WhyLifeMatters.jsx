@@ -4,7 +4,7 @@ import Container from "../../components/Container";
 const WhyLifeMatters = () => {
   return (
     <Container>
-      <section className="my-20 px-4 max-w-7xl mx-auto">
+      <section className="my-20 px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold mb-3">
             Why Learning From Life Matters

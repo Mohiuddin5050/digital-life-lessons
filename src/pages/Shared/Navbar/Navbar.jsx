@@ -43,7 +43,7 @@ const Navbar = () => {
           </li>
           {isPremium === false && (
             <li>
-              <NavLink to="/pricing">Upgrade</NavLink>
+              <NavLink to="/upgrade-membership">Upgrade Membership</NavLink>
             </li>
           )}
         </>

@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import LessonCard from "../Lessons/LessonCard";
 import LoadingSpinner from "../../components/LoadingSpinner";
+import Container from "../../components/Container";
 
 const FeaturedLesson = () => {
   const axiosSecure = useAxiosSecure();
@@ -21,11 +22,12 @@ const FeaturedLesson = () => {
   if (isLoading) return <LoadingSpinner />;
 
   if (isError || lessons.length === 0) {
-    return null; // hide section if no featured lessons
+    return null; 
   }
 
   return (
-    <section className="max-w-7xl mx-auto px-4 py-12">
+    <Container>
+      <section className="py-12">
       {/* Section Header */}
       <div className="text-center mb-10">
         <h2 className="text-3xl md:text-4xl font-bold mb-3">
@@ -44,6 +46,7 @@ const FeaturedLesson = () => {
         ))}
       </div>
     </section>
+    </Container>
   );
 };
 

@@ -128,7 +128,7 @@ const PublicLesson = () => {
       </div>
 
       {/* ---------- Lessons ---------- */}
-      {paginatedLessons.length === 0 ? (
+      {lessons.length === 0 ? (
         <p className="text-center text-gray-500">No lessons found</p>
       ) : (
         <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
