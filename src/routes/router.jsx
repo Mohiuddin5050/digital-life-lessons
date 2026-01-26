@@ -11,6 +11,8 @@ import PrivetRoute from "./PrivetRoute";
 import DashboardLayout from "../layouts/DashboardLayout";
 import MyLessons from "../pages/Dashboard/MyLessons";
 import UpgradeMembership from "../pages/Payment/UpgradeMembership";
+import PaymentSuccess from "../pages/Payment/PaymentSuccess";
+import PaymentCancel from "../pages/Payment/PaymentCancel";
 
 export const router = createBrowserRouter([
   {
@@ -44,6 +46,14 @@ export const router = createBrowserRouter([
             <UpgradeMembership />
           </PrivetRoute>
         ),
+      },
+      {
+        path: "payment-success",
+        Component: PaymentSuccess,
+      },
+      {
+        path: "payment-canceled",
+        Component: PaymentCancel,
       },
 
       {
