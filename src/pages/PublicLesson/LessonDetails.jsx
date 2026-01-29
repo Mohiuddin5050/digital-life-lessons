@@ -90,7 +90,7 @@ const LessonDetails = () => {
   const handleReport = () => {
     if (!user) return toast.error("Please log in to report");
     const reason = prompt(
-      "Report reason (Inappropriate Content / Hate Speech / Misleading / Spam / Sensitive / Other):"
+      "Report reason (Inappropriate Content / Hate Speech / Misleading / Spam / Sensitive / Other):",
     );
     if (reason) reportMutation.mutate(reason);
   };
@@ -108,21 +108,6 @@ const LessonDetails = () => {
 
   return (
     <div className="p-6">
-      {/* Premium overlay */}
-      {locked && (
-        <div className="absolute inset-0 flex flex-col items-center justify-center bg-white/60 backdrop-blur-md z-10">
-          <span className="text-4xl">🔒</span>
-          <h2 className="text-xl font-semibold mt-3">Premium Lesson</h2>
-          <p className="text-gray-600 mt-2">Upgrade to view full content</p>
-          <button
-            className="btn btn-primary mt-4"
-            onClick={() => (window.location.href = "/pricing")}
-          >
-            Upgrade Now
-          </button>
-        </div>
-      )}
-
       {/* Lesson Info */}
       <h1 className="text-3xl font-bold mb-4">{lesson.title}</h1>
       {lesson.lessonImage && (
