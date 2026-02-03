@@ -82,7 +82,7 @@ const Navbar = () => {
             <div className="dropdown dropdown-end">
               <label tabIndex={0} className="cursor-pointer">
                 <img
-                  src={user.photoURL || "https://via.placeholder.com/40"}
+                  src={user.photoUrl}
                   alt="avatar"
                   className="w-10 h-10 rounded-full border"
                   referrerPolicy="no-referrer"
@@ -101,8 +101,10 @@ const Navbar = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link to="/dashboard"><MdOutlineDashboard size={20} />
-                    <span className="is-drawer-close:hidden">Dashboard</span></Link>
+                  <Link to="/dashboard">
+                    <MdOutlineDashboard size={20} />
+                    <span className="is-drawer-close:hidden">Dashboard</span>
+                  </Link>
                 </li>
                 <li>
                   <button onClick={handleLogout} className=" btn text-red-500">

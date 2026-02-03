@@ -14,6 +14,7 @@ import UpgradeMembership from "../pages/Payment/UpgradeMembership";
 import PaymentSuccess from "../pages/Payment/PaymentSuccess";
 import PaymentCancel from "../pages/Payment/PaymentCancel";
 import Profile from "../pages/Dashboard/Profile/Profile";
+import Author from "../pages/Lessons/Author";
 
 export const router = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ export const router = createBrowserRouter([
       {
         path: "public-lessons",
         Component: PublicLesson,
+      },
+      {
+        path: "profile/:email",
+        Component: Author,
       },
       {
         path: "upgrade-membership",
