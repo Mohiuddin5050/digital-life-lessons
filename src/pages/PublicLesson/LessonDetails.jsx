@@ -215,8 +215,11 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import { Calendar, Clock, Lock, Tag, Smile } from "lucide-react";
-import LessonInteractions from "./LessonInteractions";
 import Creator from "./Creator";
+import LessonEngagement from "./LessonEngagement";
+import useAuth from "../../hooks/useAuth";
+import CommentSection from "./CommentSection";
+import RecommendedLessons from "./RecommendedLessons";
 
 const LessonDetails = () => {
   const { id } = useParams();
@@ -230,13 +233,14 @@ const LessonDetails = () => {
     },
   });
 
+  const { user} = useAuth()
   
 
   if (isLoading) return <LoadingSpinner />;
   if (!lesson) return <div>No lesson found</div>;
 
   return (
-    <section className="max-w-5xl mx-auto px-4 py-12">
+    <section className="max-w-7xl mx-auto px-4 py-12">
       {/* Main Card Container */}
       <div className="bg-white rounded-3xl shadow-xl shadow-gray-200/50 border border-gray-100 overflow-hidden p-3">
         {/* 1. Image Header Section */}
@@ -320,7 +324,13 @@ const LessonDetails = () => {
           </div>
         </div>
       </div>
-      {lesson && <Creator lesson={lesson} />}
+      <div className="grid md:grid-cols-2 justify-center items-center">
+        {lesson && <Creator lesson={lesson} />}
+      <LessonEngagement lesson={lesson} user={user} />
+      </div>
+      <CommentSection lessonId={lesson._id} user={user} />
+      <RecommendedLessons lessonId={lesson._id} />
+
       {/* <LessonInteractions /> */}
     </section>
   );
