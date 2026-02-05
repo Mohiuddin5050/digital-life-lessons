@@ -49,6 +49,9 @@ const PublicLesson = () => {
     if (sortBy === "newest") {
       data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
     }
+    if (sortBy === "oldest") {
+      data.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+    }
 
     if (sortBy === "saved") {
       data.sort((a, b) => (b.favoritesCount || 0) - (a.favoritesCount || 0));

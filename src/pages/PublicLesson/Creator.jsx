@@ -6,7 +6,7 @@ const Creator = ({ lesson }) => {
 
   return (
     <Container>
-      <section className="max-w-4xl mx-auto px-6 py-12">
+      <section className="py-12">
         <div className="bg-white rounded-2xl shadow-lg p-8 text-center max-w-md mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold">Author Info</h2>

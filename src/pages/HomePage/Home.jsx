@@ -3,15 +3,20 @@ import Banner from "./Banner";
 import WhyLifeMatters from "./WhyLifeMatters";
 import FeaturedLesson from "./FeaturedLesson";
 import TopContributors from "./TopContributors";
+import MostSavedLessons from "./MostSavedLessons";
+import Container from "../../components/Container";
 
 const Home = () => {
   return (
-    <div>
+   <Container>
+     <div>
       <Banner />
       <FeaturedLesson />
       <WhyLifeMatters />
       <TopContributors/>
+      <MostSavedLessons />
     </div>
+   </Container>
   );
 };
 

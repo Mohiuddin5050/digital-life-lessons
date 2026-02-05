@@ -36,7 +36,7 @@ const CommentSection = ({ lessonId, user }) => {
   };
 
   return (
-    <div className="mt-12">
+    <div className="max-w-4xl mx-auto mt-12">
       <h3 className="text-2xl font-bold mb-4">Comments</h3>
 
       {/* Add Comment */}
@@ -70,6 +70,9 @@ const CommentSection = ({ lessonId, user }) => {
               <p className="">{c.userName}</p>
               <p className="text-gray-600 font-semibold">{c.comment}</p>
             </div>
+             <p className="text-xs text-gray-400 mt-1">
+              {new Date(c.createdAt).toLocaleDateString()}
+            </p>
           </div>
         ))}
       </div>
