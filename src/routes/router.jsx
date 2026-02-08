@@ -16,6 +16,8 @@ import PaymentCancel from "../pages/Payment/PaymentCancel";
 import Profile from "../pages/Dashboard/Profile/Profile";
 import Author from "../pages/Lessons/Author";
 import DashboardHome from "../pages/Dashboard/DashboardHome/DashboardHome";
+import UpdateLesson from "../pages/Lessons/UpdateLesson";
+import MyFavorites from "../pages/Dashboard/MyFavorites";
 
 export const router = createBrowserRouter([
   {
@@ -93,9 +95,18 @@ export const router = createBrowserRouter([
         path: "my-lessons",
         Component: MyLessons,
       },
+
+      {
+        path: "my-favorites",
+        Component: MyFavorites,
+      },
       {
         path: "profile",
         Component: Profile,
+      },
+      {
+        path: "update-lesson/:id",
+        Component: UpdateLesson,
       },
     ],
   },

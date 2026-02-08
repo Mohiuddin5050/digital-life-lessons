@@ -10,8 +10,8 @@ const PaymentCancel = () => {
         </h2>
 
         <p className="text-gray-600 mb-6">
-          Your payment was cancelled. No money has been charged.
-          You can try again anytime.
+          Your payment was cancelled. No money has been charged. You can try
+          again anytime.
         </p>
 
         <div className="flex gap-3 justify-center">

@@ -140,18 +140,17 @@ const AddLesson = () => {
                 </div>
 
                 <div>
-                  <label className="label font-medium">Access Level</label>
-                  <select
-                    className="select select-bordered w-full"
-                    {...register("accessLevel", { required: true })}
-                  >
-                    <option value="">Select</option>
-                    <option value="free">Free</option>
-                    <option value="premium" disabled={!isPremium}>
-                      Paid 
-                    </option>
-                  </select>
-                </div>
+                <label className="label">Access</label>
+                <select
+                  className="select select-bordered w-full"
+                  {...register("accessLevel", { required: true })}
+                >
+                  <option value="free">Free</option>
+                  <option value="paid" disabled={!isPremium}>
+                    Paid
+                  </option>
+                </select>
+              </div>
               </div>
             </div>
 

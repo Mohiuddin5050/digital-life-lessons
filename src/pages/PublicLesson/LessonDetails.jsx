@@ -25,7 +25,12 @@ const LessonDetails = () => {
   const { user } = useAuth();
 
   if (isLoading) return <LoadingSpinner />;
-  if (!lesson) return <div>No lesson found</div>;
+  if (!lesson)
+    return (
+      <div className="text-center py-12 text-4xl font-bold">
+        No lesson found
+      </div>
+    );
 
   return (
     <Container>
