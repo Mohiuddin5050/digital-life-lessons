@@ -61,7 +61,7 @@ export const router = createBrowserRouter([
         Component: PaymentSuccess,
       },
       {
-        path: "payment-canceled",
+        path: "payment-cancel",
         Component: PaymentCancel,
       },
 

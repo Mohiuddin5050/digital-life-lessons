@@ -82,7 +82,7 @@ const UserDashboardHome = () => {
         </h2>
 
         {recentLessons.length === 0 ? (
-          <p className="text-gray-500">No lessons yet</p>
+          <p className="text-gray-500 text-center text-2xl">No lessons yet</p>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {recentLessons.map((lesson) => (
