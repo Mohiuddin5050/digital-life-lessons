@@ -128,6 +128,25 @@ const PublicLesson = () => {
           <option value="newest">Newest</option>
           <option value="saved">Most Saved</option>
         </select>
+
+        {(searchText ||
+          categoryFilter ||
+          toneFilter ||
+          sortBy ||
+          currentPage) && (
+          <button
+            onClick={() => {
+              setSearchText("");
+              setCategoryFilter("");
+              setToneFilter("");
+              setSortBy("newest");
+              setCurrentPage(1);
+            }}
+            className="btn"
+          >
+            Clear
+          </button>
+        )}
       </div>
 
       {/* ---------- Lessons ---------- */}

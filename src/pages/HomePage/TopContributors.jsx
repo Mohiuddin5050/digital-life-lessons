@@ -47,7 +47,7 @@ const TopContributors = () => {
                 <img
                   src={
                     user.photoURL ||
-                    `https://ui-avatars.com/api/?name=${user.name || "User"}&background=random`
+                    `https://ui-avatars.com/api/?name=${user.name || "User"}`
                   }
                   alt={user.name}
                   className="w-full h-full rounded-full object-cover"

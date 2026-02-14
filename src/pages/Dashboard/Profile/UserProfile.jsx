@@ -62,7 +62,7 @@ const UserProfile = () => {
 
   // ===== Update Profile =====
   const onUpdate = async (data) => {
-    let photoURL = currentUser.photoURL;
+    let photoUrl = currentUser.photoUrl;
 
     if (data.photo?.[0]) {
       const formData = new FormData();
@@ -72,12 +72,12 @@ const UserProfile = () => {
         `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_img_host}`,
         formData,
       );
-      photoURL = res.data.data.url;
+      photoUrl = res.data.data.url;
     }
 
     const updateData = {
       displayName: data.name,
-      photoURL,
+      photoUrl,
     };
 
     updateUserProfile(updateData)
@@ -102,7 +102,7 @@ const UserProfile = () => {
           <div className="relative">
             <img
               src={
-                currentUser.photoURL || "https://i.ibb.co/2n9xk5Q/avatar.png"
+                currentUser.photoUrl || "https://i.ibb.co/2n9xk5Q/avatar.png"
               }
               className="w-32 h-32 rounded-full object-cover border-4 border-primary"
             />

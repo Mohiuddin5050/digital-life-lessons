@@ -18,6 +18,13 @@ import Author from "../pages/Lessons/Author";
 import DashboardHome from "../pages/Dashboard/DashboardHome/DashboardHome";
 import UpdateLesson from "../pages/Lessons/UpdateLesson";
 import MyFavorites from "../pages/Dashboard/MyFavorites";
+import ManageUsers from "../pages/Dashboard/Admin/manageUsers";
+import ManageLessons from "../pages/Dashboard/Admin/ManageLessons";
+import ReportLessons from "../pages/Dashboard/Admin/ReportLessons";
+import AdminRoute from "./AdminRoute";
+import Settings from "../pages/Dashboard/Settings";
+import NotFound from "../pages/NotFound/NotFound";
+// import AdminRoute from "../layouts/AdminRoute";
 
 export const router = createBrowserRouter([
   {
@@ -108,6 +115,35 @@ export const router = createBrowserRouter([
         path: "update-lesson/:id",
         Component: UpdateLesson,
       },
+      {
+        path: "settings",
+        Component: Settings,
+      },
+      {
+        path: "admin/manage-users",
+        element: (
+          <AdminRoute>
+            <ManageUsers />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "admin/manage-lessons",
+        element: (
+          <AdminRoute>
+            <ManageLessons />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "admin/reported-lessons",
+        element: (
+          <AdminRoute>
+            <ReportLessons />
+          </AdminRoute>
+        ),
+      },
     ],
   },
+  { path: "*", Component: NotFound },
 ]);

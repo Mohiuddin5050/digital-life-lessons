@@ -74,7 +74,7 @@ const MyLessons = () => {
 };
 
 
-  // ❌ Delete Lesson
+  // Delete Lesson
   const queryClient = useQueryClient();
 
 const handleDelete = async (id) => {
@@ -108,6 +108,7 @@ const handleDelete = async (id) => {
         <table className="table w-full">
           <thead>
             <tr>
+              <th>#</th>
               <th>Title</th>
               <th>Privacy</th>
               <th>Access</th>
@@ -119,8 +120,9 @@ const handleDelete = async (id) => {
           </thead>
 
           <tbody>
-            {myLessons.map((lesson) => (
+            {myLessons.map((lesson, i) => (
               <tr key={lesson._id}>
+                <th>{i + 1}</th>
                 <td className="font-medium">
                   {limitWords(lesson.lessonTitle)}
                 </td>

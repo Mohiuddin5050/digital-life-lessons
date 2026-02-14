@@ -20,7 +20,7 @@ const RecommendedLessons = ({ lessonId }) => {
 
   return (
     <section className="mt-16">
-      <h2 className="text-2xl font-bold mb-6">
+      <h2 className="text-2xl lg:text-4xl text-center font-bold mb-10">
         Similar & Recommended Lessons
       </h2>
 

@@ -89,9 +89,9 @@ const MyFavorites = () => {
               setCategory("");
               setTone("");
             }}
-            className="btn btn-outline btn-sm"
+            className="btn"
           >
-            Clear Filters
+            Clear
           </button>
         )}
       </div>
@@ -101,6 +101,7 @@ const MyFavorites = () => {
         <table className="table w-full">
           <thead>
             <tr>
+              <th>#</th>
               <th>Title</th>
               <th>Category</th>
               <th>Emotional Tone</th>
@@ -109,8 +110,9 @@ const MyFavorites = () => {
           </thead>
 
           <tbody>
-            {filteredFavorites.map((item) => (
+            {filteredFavorites.map((item, i) => (
               <tr key={item._id}>
+                <th>{i + 1}</th>
                 <td className="font-medium">{limitWords(item.lessonTitle)}</td>
                 <td>{item.category}</td>
                 <td>{item.emotionalTone}</td>

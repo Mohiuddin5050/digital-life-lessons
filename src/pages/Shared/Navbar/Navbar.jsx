@@ -4,9 +4,9 @@ import Container from "../../../components/Container";
 import { toast } from "react-toastify";
 import useStatus from "../../../hooks/useStatus";
 import LoadingSpinner from "../../../components/LoadingSpinner";
-import Logo from "../../../components/logo";
 import { CgProfile } from "react-icons/cg";
 import { MdOutlineDashboard } from "react-icons/md";
+import Logo from "../../../components/Logo";
 
 const Navbar = () => {
   const { user, loading, logOut } = useAuth();
