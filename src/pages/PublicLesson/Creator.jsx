@@ -13,7 +13,7 @@ const Creator = ({ lesson }) => {
           </div>
           <img
             src={
-              author.photoUrl ||
+              author.photoURL ||
               `https://ui-avatars.com/api/?name=${author.displayName}`
             }
             alt={author.displayName}
@@ -22,16 +22,13 @@ const Creator = ({ lesson }) => {
 
           <h3 className="font-bold text-2xl">{author.displayName}</h3>
 
-          <p className="mt-3 text-gray-600">Total Lessons Created: {author.totalLessons}</p>
-
-          <p className="font-bold text-xl text-primary">
-            
+          <p className="mt-3 text-gray-600">
+            Total Lessons Created: {author.totalLessons}
           </p>
 
-          <Link
-            to={`/profile/${author.email}`}
-            className="text-primary"
-          >
+          <p className="font-bold text-xl text-primary"></p>
+
+          <Link to={`/profile/${author.email}`} className="text-primary">
             View all lessons →
           </Link>
         </div>

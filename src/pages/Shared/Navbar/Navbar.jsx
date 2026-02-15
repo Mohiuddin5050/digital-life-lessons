@@ -27,23 +27,33 @@ const Navbar = () => {
   const navLinks = (
     <>
       <li>
-        <NavLink to="/">Home</NavLink>
+        <NavLink to="/" className={({ isActive }) =>
+            isActive ? "text-purple-600 font-semibold" : "hover:text-purple-500"
+          }>Home</NavLink>
       </li>
       <li>
-        <NavLink to="/dashboard/add-lesson">Add Lesson</NavLink>
+        <NavLink to="/dashboard/add-lesson" className={({ isActive }) =>
+            isActive ? "text-purple-600 font-semibold" : "hover:text-purple-500"
+          }>Add Lesson</NavLink>
       </li>
       <li>
-        <NavLink to="/public-lessons">Public Lessons</NavLink>
+        <NavLink to="/public-lessons" className={({ isActive }) =>
+            isActive ? "text-purple-600 font-semibold" : "hover:text-purple-500"
+          }>Public Lessons</NavLink>
       </li>
 
       {user && (
         <>
           <li>
-            <NavLink to="/dashboard/my-lessons">My Lessons</NavLink>
+            <NavLink to="/dashboard/my-lessons" className={({ isActive }) =>
+            isActive ? "text-purple-600 font-semibold" : "hover:text-purple-500"
+          }>My Lessons</NavLink>
           </li>
           {isPremium === false && (
             <li>
-              <NavLink to="/upgrade-membership">Upgrade Membership</NavLink>
+              <NavLink to="/upgrade-membership" className={({ isActive }) =>
+            isActive ? "text-purple-600 font-semibold" : "hover:text-purple-500"
+          }>Upgrade Membership</NavLink>
             </li>
           )}
         </>
@@ -82,7 +92,7 @@ const Navbar = () => {
             <div className="dropdown dropdown-end">
               <label tabIndex={0} className="cursor-pointer">
                 <img
-                  src={user.photoUrl}
+                  src={user?.photoURL}
                   alt="avatar"
                   className="w-10 h-10 rounded-full border"
                   referrerPolicy="no-referrer"
@@ -93,7 +103,7 @@ const Navbar = () => {
                 tabIndex={0}
                 className="menu dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
               >
-                <li className="text-center">{user.displayName || "User"}</li>
+                <li className="text-center">{user?.displayName || "User"}</li>
                 <li>
                   <Link to="/dashboard/profile">
                     <CgProfile size={20} />

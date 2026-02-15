@@ -91,7 +91,7 @@ const LessonCard = ({ lesson }) => {
 
       <div className="flex items-center gap-3 mt-4 pt-4 border-t">
         <img
-          src={user[0]?.photoUrl || user1}
+          src={user[0]?.photoURL || user1}
           alt=""
           className="w-12 h-12"
         />

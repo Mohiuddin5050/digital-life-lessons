@@ -27,7 +27,7 @@ const CommentSection = ({ lessonId, user }) => {
       lessonId,
       userEmail: user.email,
       userName: user.displayName,
-      userPhoto: user.photoUrl,
+      userPhoto: user.photoURL,
       comment: text,
     });
 
@@ -58,10 +58,7 @@ const CommentSection = ({ lessonId, user }) => {
       {/* Comment List */}
       <div className="space-y-4">
         {comments.map((c) => (
-          <div
-            key={c._id}
-            className="bg-gray-50 p-4 rounded-xl flex gap-3"
-          >
+          <div key={c._id} className="bg-gray-50 p-4 rounded-xl flex gap-3">
             <img
               src={c.userPhoto}
               className="w-10 h-10 rounded-full object-cover"
@@ -70,7 +67,7 @@ const CommentSection = ({ lessonId, user }) => {
               <p className="">{c.userName}</p>
               <p className="text-gray-600 font-semibold">{c.comment}</p>
             </div>
-             <p className="text-xs text-gray-400 mt-1">
+            <p className="text-xs text-gray-400 mt-1">
               {new Date(c.createdAt).toLocaleDateString()}
             </p>
           </div>

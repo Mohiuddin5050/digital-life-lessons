@@ -9,7 +9,7 @@ import Container from "../../components/Container";
 import LessonCard from "./LessonCard";
 
 const Author = () => {
-  const { email } = useParams(); 
+  const { email } = useParams();
   const axiosSecure = useAxiosSecure();
 
   // ===== Author Info =====
@@ -34,16 +34,14 @@ const Author = () => {
 
   if (isLoading || lessonsLoading) return <LoadingSpinner />;
 
-  const publicLessons = lessons.filter(
-    (lesson) => lesson.privacy === "public"
-  );
+  const publicLessons = lessons.filter((lesson) => lesson.privacy === "public");
 
   return (
     <Container>
       {/* ===== Author Profile ===== */}
       <div className="bg-white rounded-2xl shadow p-6 mt-10 flex flex-col md:flex-row gap-6 items-center justify-center max-w-lg mx-auto">
         <img
-          src={author.photoUrl || "https://i.ibb.co/2n9xk5Q/avatar.png"}
+          src={author.photoURL || "https://i.ibb.co/2n9xk5Q/avatar.png"}
           className="w-32 h-32 rounded-full object-cover border-4 border-primary"
         />
 
@@ -68,9 +66,7 @@ const Author = () => {
         </h3>
 
         {publicLessons.length === 0 ? (
-          <p className="text-center text-gray-500">
-            No public lessons yet
-          </p>
+          <p className="text-center text-gray-500">No public lessons yet</p>
         ) : (
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {publicLessons.map((lesson) => (

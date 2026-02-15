@@ -18,7 +18,7 @@ const SocialLogin = () => {
         const userInfo = {
           email: result.user.email,
           displayName: result.user.displayName,
-          photoUrl: result.user.photoUrl,
+          photoURL: result.user.photoURL,
         };
         axiosSecure.post("/users", userInfo).then((res) => {
           console.log("user data has been stored", res.data);

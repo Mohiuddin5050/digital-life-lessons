@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import useStatus from "../../hooks/useStatus";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import { toast } from "react-toastify";
+import taskAll from "../../assets/Task Alt.json"
 import axios from "axios";
+import Lottie from "lottie-react";
 
 const AddLesson = () => {
   const {
@@ -15,6 +17,7 @@ const AddLesson = () => {
     formState: { errors },
   } = useForm();
 
+  const [showAnimation, setShowAnimation] = useState(false);
   const { isPremium, userLoading } = useStatus();
   const { user, loading } = useAuth();
   const axiosSecure = useAxiosSecure();
@@ -64,6 +67,8 @@ const AddLesson = () => {
       await axiosSecure.post("/lessons", lessonData);
 
       toast.success("Lesson Created Successfully");
+      setShowAnimation(true);
+      setTimeout(() => setShowAnimation(false), 5400);
       reset();
     } catch (error) {
       console.error(error);
@@ -140,17 +145,17 @@ const AddLesson = () => {
                 </div>
 
                 <div>
-                <label className="label">Access</label>
-                <select
-                  className="select select-bordered w-full"
-                  {...register("accessLevel", { required: true })}
-                >
-                  <option value="free">Free</option>
-                  <option value="paid" disabled={!isPremium}>
-                    Paid
-                  </option>
-                </select>
-              </div>
+                  <label className="label">Access</label>
+                  <select
+                    className="select select-bordered w-full"
+                    {...register("accessLevel", { required: true })}
+                  >
+                    <option value="free">Free</option>
+                    <option value="paid" disabled={!isPremium}>
+                      Paid
+                    </option>
+                  </select>
+                </div>
               </div>
             </div>
 
@@ -185,6 +190,11 @@ const AddLesson = () => {
             <button className="btn btn-primary px-10">Create Lesson</button>
           </div>
         </form>
+        {showAnimation && (
+        <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-64 h-64">
+          <Lottie animationData={taskAll} loop={true} size={180}/>
+        </div>
+      )}
       </div>
     </div>
   );

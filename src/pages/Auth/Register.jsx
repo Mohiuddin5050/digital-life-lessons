@@ -34,33 +34,37 @@ const Register = () => {
           import.meta.env.VITE_img_host
         }`;
 
-        axios.post(image_API_URL, formData).then((res) => {
-          console.log("after image uploaded", res.data.data.url);
-          const photoURL = res.data.data.url;
+        axios
+          .post(image_API_URL, formData)
+          .then((res) => {
+            console.log("after image uploaded", res.data.data.url);
+            const photoURL = res.data.data.url;
 
-          // update user profile in firebase
-          const userProfile = {
-            displayName: data.name,
-            photoUrl: photoURL,
-          };
+            // update user profile in firebase
+            const userProfile = {
+              displayName: data.name,
+              photoURL: photoURL,
+            };
 
-          updateUserProfile(userProfile)
-            .then(() => {
-              // create user in the database
-              const userInfo = {
-                email: data.email,
-                displayName: data.name,
-                photoUrl: photoURL,
-              };
-              axiosSecure.post("/users", userInfo).then(() => {
-                toast.success("Account created successfully!");
-                navigate(location.state || "/");
+            updateUserProfile(userProfile)
+              .then(() => {
+                // create user in the database
+                const userInfo = {
+                  email: data.email,
+                  displayName: data.name,
+                  photoURL: photoURL,
+                };
+                axiosSecure
+                  .post("/users", userInfo)
+                  .then(() => {
+                    toast.success("Account created successfully!");
+                    navigate(location.state || "/");
+                  })
+                  .catch((error) => console.log(error));
               })
               .catch((error) => console.log(error));
-            })
-            .catch((error) => console.log(error));
-        })
-        .catch((error) => console.log(error));
+          })
+          .catch((error) => console.log(error));
       })
       .catch((error) => {
         console.log(error);
