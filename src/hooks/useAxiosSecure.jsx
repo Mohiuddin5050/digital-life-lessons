@@ -4,7 +4,7 @@ import useAuth from "./useAuth";
 import { useNavigate } from "react-router";
 
 const axiosSecure = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "https://digital-life-lesson-beta.vercel.app",
 });
 
 const useAxiosSecure = () => {
@@ -35,8 +35,8 @@ const useAxiosSecure = () => {
         }
 
         return Promise.reject(error);
-      },
-    );
+    }
+     );
 
     return () => {
       axiosSecure.interceptors.request.eject(reqInterceptor);

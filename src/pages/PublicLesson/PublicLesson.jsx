@@ -1,11 +1,11 @@
 import React, { useState, useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import LessonCard from "../Lessons/LessonCard";
+import useAxios from "../../hooks/useAxios";
 
 const PublicLesson = () => {
-  const axiosSecure = useAxiosSecure();
+  const axiosInstance = useAxios();
 
   // UI states
   const [searchText, setSearchText] = useState("");
@@ -20,7 +20,7 @@ const PublicLesson = () => {
   const { data: lessons = [], isLoading } = useQuery({
     queryKey: ["publicLessons"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/lessons?privacy=public");
+      const res = await axiosInstance.get("/lessons?privacy=public");
       return res.data;
     },
   });

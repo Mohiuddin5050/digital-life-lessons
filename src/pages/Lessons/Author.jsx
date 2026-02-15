@@ -2,14 +2,13 @@ import React from "react";
 import { useParams } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 import { FaCrown } from "react-icons/fa";
-
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import Container from "../../components/Container";
 import LessonCard from "./LessonCard";
 
 const Author = () => {
-  const { email } = useParams();
+  const { email } = useParams(); 
   const axiosSecure = useAxiosSecure();
 
   // ===== Author Info =====
@@ -34,7 +33,9 @@ const Author = () => {
 
   if (isLoading || lessonsLoading) return <LoadingSpinner />;
 
-  const publicLessons = lessons.filter((lesson) => lesson.privacy === "public");
+  const publicLessons = lessons.filter(
+    (lesson) => lesson.privacy === "public"
+  );
 
   return (
     <Container>
@@ -66,7 +67,9 @@ const Author = () => {
         </h3>
 
         {publicLessons.length === 0 ? (
-          <p className="text-center text-gray-500">No public lessons yet</p>
+          <p className="text-center text-gray-500">
+            No public lessons yet
+          </p>
         ) : (
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {publicLessons.map((lesson) => (

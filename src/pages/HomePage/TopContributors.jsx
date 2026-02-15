@@ -1,16 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import Container from "../../components/Container";
+import useAxios from "../../hooks/useAxios";
 
 const TopContributors = () => {
-  const axiosSecure = useAxiosSecure();
+  const axiosInstance = useAxios();
 
   const { data = [], isLoading } = useQuery({
     queryKey: ["top-contributors"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/users/top-contributors");
+      const res = await axiosInstance.get("/users/top-contributors");
       return res.data;
     },
   });

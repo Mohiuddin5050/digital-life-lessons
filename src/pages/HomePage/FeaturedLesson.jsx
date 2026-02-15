@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
 import LessonCard from "../Lessons/LessonCard";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import Container from "../../components/Container";
+import useAxios from "../../hooks/useAxios";
 
 const FeaturedLesson = () => {
-  const axiosSecure = useAxiosSecure();
+  const axiosInstance = useAxios();
 
   const {
     data: lessons = [],
@@ -14,7 +14,7 @@ const FeaturedLesson = () => {
   } = useQuery({
     queryKey: ["featuredLessons"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/lessons");
+      const res = await axiosInstance.get("/lessons");
       return res.data;
     },
   });

@@ -1,17 +1,17 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useAxios from "../../hooks/useAxios";
 
 const CommentSection = ({ lessonId, user }) => {
-  const axiosSecure = useAxiosSecure();
+  const axiosInstance = useAxios();
   const [text, setText] = useState("");
 
   const { data: comments = [], refetch } = useQuery({
     queryKey: ["comments", lessonId],
     enabled: !!lessonId,
     queryFn: async () => {
-      const res = await axiosSecure.get(`/comments/${lessonId}`);
+      const res = await axiosInstance.get(`/comments/${lessonId}`);
       return res.data;
     },
   });
@@ -23,7 +23,7 @@ const CommentSection = ({ lessonId, user }) => {
 
     if (!text.trim()) return;
 
-    await axiosSecure.post("/comments", {
+    await axiosInstance.post("/comments", {
       lessonId,
       userEmail: user.email,
       userName: user.displayName,

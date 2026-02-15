@@ -1,15 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
 import LessonCard from "../Lessons/LessonCard";
 import LoadingSpinner from "../../components/LoadingSpinner";
+import useAxios from "../../hooks/useAxios";
 
 const MostSavedLessons = () => {
-  const axiosSecure = useAxiosSecure();
+  const axiosInstance = useAxios();
 
   const { data: lessons = [], isLoading } = useQuery({
     queryKey: ["mostSavedLessons"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/lessons/most-saved");
+      const res = await axiosInstance.get("/lessons/most-saved");
       return res.data;
     },
   });

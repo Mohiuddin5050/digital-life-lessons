@@ -1,14 +1,14 @@
 import React from "react";
 import { Link } from "react-router";
 import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useStatus from "../../hooks/useStatus";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import user1 from "../../assets/image.png";
 import user2 from "../../assets/imageplaceholder.jpg";
+import useAxios from "../../hooks/useAxios";
 
 const LessonCard = ({ lesson }) => {
-  const axiosSecure = useAxiosSecure();
+  const axiosInstance = useAxios();
   const { isPremium, userLoading } = useStatus();
 
   const {
@@ -28,7 +28,7 @@ const LessonCard = ({ lesson }) => {
     queryKey: ["users", createdBy],
     enabled: !!createdBy,
     queryFn: async () => {
-      const res = await axiosSecure.get(`/users?email=${createdBy}`);
+      const res = await axiosInstance.get(`/users?email=${createdBy}`);
       return res.data;
     },
   });

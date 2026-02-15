@@ -1,15 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
 import LessonCard from "../Lessons/LessonCard";
+import useAxios from "../../hooks/useAxios";
 
 const RecommendedLessons = ({ lessonId }) => {
-  const axiosSecure = useAxiosSecure();
+  const axiosInstance = useAxios();
 
   const { data: lessons = [], isLoading } = useQuery({
     queryKey: ["recommended-lessons", lessonId],
     enabled: !!lessonId,
     queryFn: async () => {
-      const res = await axiosSecure.get(
+      const res = await axiosInstance.get(
         `/lessons/${lessonId}/recommended`,
       );
       return res.data;

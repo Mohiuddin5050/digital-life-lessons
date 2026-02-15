@@ -7,10 +7,10 @@ import {
   TwitterShareButton,
   XIcon,
 } from "react-share";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useAxios from "../../hooks/useAxios";
 
 const LessonEngagement = ({ lesson, user }) => {
-  const axiosSecure = useAxiosSecure();
+  const axiosInstance = useAxios();
 
   if (!lesson) return null;
 
@@ -33,7 +33,7 @@ const LessonEngagement = ({ lesson, user }) => {
     setLiked(!liked);
     setLikes(prev => (liked ? prev - 1 : prev + 1));
 
-    await axiosSecure.patch(`/lessons/${lesson._id}/like`, {
+    await axiosInstance.patch(`/lessons/${lesson._id}/like`, {
       email: user.email,
     });
   };
@@ -44,7 +44,7 @@ const LessonEngagement = ({ lesson, user }) => {
       return Swal.fire("Login required", "Please login first", "info");
     }
 
-    const res = await axiosSecure.post("/favorites/toggle", {
+    const res = await axiosInstance.post("/favorites/toggle", {
       lessonId: lesson._id,
       email: user.email,
     });
@@ -83,7 +83,7 @@ const LessonEngagement = ({ lesson, user }) => {
     if (!reason) return;
 
   try {
-  await axiosSecure.post("/reports", {
+  await axiosInstance.post("/reports", {
     lessonId: lesson._id,
     reporterEmail: user.email,
     reason,

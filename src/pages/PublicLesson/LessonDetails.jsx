@@ -1,6 +1,5 @@
 import { useParams } from "react-router";
 import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import { Calendar, Clock } from "lucide-react";
 import Creator from "./Creator";
@@ -9,15 +8,16 @@ import useAuth from "../../hooks/useAuth";
 import CommentSection from "./CommentSection";
 import RecommendedLessons from "./RecommendedLessons";
 import Container from "../../components/Container";
+import useAxios from "../../hooks/useAxios";
 
 const LessonDetails = () => {
   const { id } = useParams();
-  const axiosSecure = useAxiosSecure();
+  const axiosInstance = useAxios();
 
   const { data: lesson, isLoading } = useQuery({
     queryKey: ["lesson", id],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/lessons/${id}`);
+      const res = await axiosInstance.get(`/lessons/${id}`);
       return res.data;
     },
   });
