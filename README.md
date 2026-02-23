@@ -8,7 +8,7 @@ Digital Life Lesson is a modern web platform where users can share meaningful li
 
 ### 🌐 Live URL
 
-🔗 [Live Site](https://eco-track-e97da.web.app/)
+🔗 [Live Site](https://digital-life-lessions.web.app/)
 
 ---
 
@@ -34,9 +34,9 @@ Digital Life Lesson is a modern web platform where users can share meaningful li
   - Highlights creators who share the most valuable lessons.
 - **Lottie Animations**
   - Interactive animations enhance user experience when adding or completing lessons.
-- **My Profile Page:**
+- **My Profile Page**
   - Instantly view and update name & profile picture
-- **Responsive Design:**
+- **Responsive Design**
   - Fully optimized for mobile, tablet, and desktop
 
 ---
