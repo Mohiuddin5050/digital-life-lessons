@@ -24,6 +24,8 @@ import ReportLessons from "../pages/Dashboard/Admin/ReportLessons";
 import AdminRoute from "./AdminRoute";
 import Settings from "../pages/Dashboard/Settings";
 import NotFound from "../pages/NotFound/NotFound";
+import Terms from "../pages/Terms/Terms";
+import Privacy from "../pages/Privacy/Privacy";
 // import AdminRoute from "../layouts/AdminRoute";
 
 export const router = createBrowserRouter([
@@ -70,6 +72,14 @@ export const router = createBrowserRouter([
       {
         path: "payment-cancel",
         Component: PaymentCancel,
+      },
+      {
+        path: "terms",
+        Component: Terms
+      },
+      {
+        path: "privacy",
+        Component: Privacy
       },
 
       {
