@@ -27,7 +27,7 @@ const AdminAnalytics = () => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
       {/* ===== Lesson Growth ===== */}
-      <div className="bg-white p-6 rounded-xl shadow">
+      <div className="bg-base-100 p-6 rounded-xl shadow">
         <h3 className="text-lg font-bold mb-4">Lesson Growth</h3>
 
         <ResponsiveContainer width="100%" height={300}>
@@ -47,7 +47,7 @@ const AdminAnalytics = () => {
       </div>
 
       {/* ===== User Growth ===== */}
-      <div className="bg-white p-6 rounded-xl shadow">
+      <div className="bg-base-100 p-6 rounded-xl shadow">
         <h3 className="text-lg font-bold mb-4">User Growth</h3>
 
         <ResponsiveContainer width="100%" height={300}>

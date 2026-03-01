@@ -36,14 +36,14 @@ const LessonDetails = () => {
     <Container>
       <section className="px-4 py-12">
         {/* Main Card Container */}
-        <div className="bg-white rounded-3xl shadow-xl shadow-gray-200/50 border border-gray-100 overflow-hidden p-3">
+        <div className="bg-base-100 rounded-xl shadow-xl shadow-gray-200/50 border border-gray-100 overflow-hidden p-3">
           {/* 1. Image Header Section */}
           {lesson.lessonImage && (
             <div className="relative h-[300px] md:h-[450px] w-full">
               <img
                 src={lesson.lessonImage}
                 alt={lesson.lessonTitle}
-                className="w-full h-full object-cover rounded-3xl"
+                className="w-full h-full object-cover rounded-xl"
               />
               {/* Overlay Gradient for better contrast */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
@@ -77,28 +77,28 @@ const LessonDetails = () => {
             {/* Metadata Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 mb-8 ">
               <div className="flex items-center gap-4">
-                <div className="p-3 bg-white rounded-xl shadow-sm">
+                <div className="p-3 bg-base-100 rounded-xl shadow-sm">
                   <Calendar className="text-blue-500" size={20} />
                 </div>
                 <div>
                   <p className="text-xs text-gray-400 uppercase font-bold tracking-tight">
                     Created On
                   </p>
-                  <p className="text-gray-700 font-medium">
+                  <p className="text-gray-500 font-medium">
                     {new Date(lesson.createdAt).toDateString()}
                   </p>
                 </div>
               </div>
 
               <div className="flex items-center gap-4">
-                <div className="p-3 bg-white rounded-xl shadow-sm">
+                <div className="p-3 bg-base-100 rounded-xl shadow-sm">
                   <Clock className="text-purple-500" size={20} />
                 </div>
                 <div>
                   <p className="text-xs text-gray-400 uppercase font-bold tracking-tight">
                     Last Updated
                   </p>
-                  <p className="text-gray-700 font-medium">
+                  <p className="text-gray-500 font-medium">
                     {lesson.updatedAt
                       ? new Date(lesson.updatedAt).toDateString()
                       : "—"}
@@ -109,7 +109,7 @@ const LessonDetails = () => {
 
             {/* Description */}
             <div className="prose prose-blue max-w-none">
-              <h3 className="text-xl font-semibold text-gray-800 mb-4">
+              <h3 className="text-xl font-semibold text-base-content mb-4">
                 Lesson Overview
               </h3>
               <div className="">{lesson.lessonDesc}</div>

@@ -95,14 +95,14 @@ const UserProfile = () => {
   };
 
   return (
-    <div className="bg-gray-50 min-h-screen">
+    <div className="min-h-screen">
       <Container>
         {/* ===== Profile Card ===== */}
-        <div className="bg-white rounded-2xl shadow p-6 mt-10 flex flex-col md:flex-row gap-6 items-center justify-center max-w-lg mx-auto">
+        <div className="bg-base-100 rounded-xl shadow p-6 mt-10 flex flex-col md:flex-row gap-6 items-center justify-center max-w-lg mx-auto">
           <div className="relative">
             <img
               src={
-                currentUser.photoURL || "https://i.ibb.co/2n9xk5Q/avatar.png"
+                currentUser?.photoURL || "https://i.ibb.co/2n9xk5Q/avatar.png"
               }
               className="w-32 h-32 rounded-full object-cover border-4 border-primary"
             />
@@ -116,11 +116,11 @@ const UserProfile = () => {
 
           <div className="">
             <h2 className="text-2xl font-bold flex items-center gap-2 justify-center md:justify-start">
-              {currentUser.displayName}
+              {currentUser?.displayName}
               {isPremium && <FaCrown className="text-yellow-500" />}
             </h2>
 
-            <p className="text-gray-500">{currentUser.email}</p>
+            <p className="text-gray-500">{currentUser?.email}</p>
 
             <div className="flex gap-4 justify-center md:justify-start mt-4">
               <span className="badge badge-outline">
@@ -179,7 +179,7 @@ const UserProfile = () => {
 
             <input
               {...register("name")}
-              defaultValue={currentUser.displayName}
+              defaultValue={currentUser?.displayName}
               className="input input-bordered w-full mb-4"
               placeholder="Display name"
             />

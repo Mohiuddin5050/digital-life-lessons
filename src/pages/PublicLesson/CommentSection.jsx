@@ -58,14 +58,14 @@ const CommentSection = ({ lessonId, user }) => {
       {/* Comment List */}
       <div className="space-y-4">
         {comments.map((c) => (
-          <div key={c._id} className="bg-gray-50 p-4 rounded-xl flex gap-3">
+          <div key={c._id} className="bg-base-100 p-4 rounded-xl flex gap-3">
             <img
               src={c.userPhoto}
               className="w-10 h-10 rounded-full object-cover"
             />
             <div>
-              <p className="">{c.userName}</p>
-              <p className="text-gray-600 font-semibold">{c.comment}</p>
+              <p className="text-gray-400">{c.userName}</p>
+              <p className="font-semibold">{c.comment}</p>
             </div>
             <p className="text-xs text-gray-400 mt-1">
               {new Date(c.createdAt).toLocaleDateString()}

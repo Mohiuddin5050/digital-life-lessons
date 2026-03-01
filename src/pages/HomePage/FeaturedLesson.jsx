@@ -33,7 +33,7 @@ const FeaturedLesson = () => {
         <h2 className="text-3xl md:text-4xl font-bold mb-3">
           Featured Life Lessons
         </h2>
-        <p className="text-gray-600 max-w-2xl mx-auto">
+        <p className="text-gray-500 max-w-2xl mx-auto">
           Handpicked wisdom shared by our community to inspire growth and
           self-reflection.
         </p>

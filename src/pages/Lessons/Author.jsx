@@ -40,7 +40,7 @@ const Author = () => {
   return (
     <Container>
       {/* ===== Author Profile ===== */}
-      <div className="bg-white rounded-2xl shadow p-6 mt-10 flex flex-col md:flex-row gap-6 items-center justify-center max-w-lg mx-auto">
+      <div className="bg-base-100 rounded-xl shadow p-6 mt-10 flex flex-col md:flex-row gap-6 items-center justify-center max-w-lg mx-auto">
         <img
           src={author.photoURL || "https://i.ibb.co/2n9xk5Q/avatar.png"}
           className="w-32 h-32 rounded-full object-cover border-4 border-primary"

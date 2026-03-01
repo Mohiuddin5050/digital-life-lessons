@@ -78,7 +78,7 @@ const AddLesson = () => {
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-12">
-      <div className="bg-base-100 shadow-xl rounded-2xl p-6 md:p-10">
+      <div className="bg-base-100 shadow-xl rounded-xl p-6 md:p-10">
         <h2 className="text-2xl md:text-4xl font-bold text-center mb-10">
           Add a Life Lesson
         </h2>

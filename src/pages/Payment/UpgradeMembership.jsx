@@ -34,16 +34,16 @@ const UpgradeMembership = () => {
   }
 
   return (
-    <div className="max-w-xl mx-auto mt-20 p-6 bg-white rounded-xl shadow">
+    <div className="max-w-xl mx-auto mt-20 p-6 bg-base-100 rounded-xl shadow">
       <h2 className="text-2xl font-bold text-center mb-4">
         Upgrade to Premium
       </h2>
 
-      <p className="text-center text-gray-600 mb-6">
+      <p className="text-center text-gray-500 mb-6">
         Get access to premium life lessons and exclusive content.
       </p>
 
-      <div className="border rounded-lg p-4 mb-6 text-center">
+      <div className="border rounded-xl p-4 mb-6 text-center">
         <h3 className="text-xl font-semibold mb-2">Premium Membership</h3>
         <p className="text-gray-500 mb-4">
           Unlock all paid lessons and future updates.

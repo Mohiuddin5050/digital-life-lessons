@@ -51,7 +51,7 @@ const ReportLessons = () => {
   };
 
   return (
-    <div className="bg-white p-6 rounded-xl shadow">
+    <div className="bg-base-100 p-6 rounded-xl shadow">
       <h2 className="text-3xl font-bold mb-6 text-center">
         🚩 Reported Lessons
       </h2>
@@ -125,7 +125,7 @@ const ReportLessons = () => {
               {(selectedLesson.reports || []).map((r, i) => (
                 <div
                   key={i}
-                  className="border rounded p-3 bg-gray-50"
+                  className="rounded-xl p-3 bg-base-200"
                 >
                   <p>
                     <b>Reporter:</b> {r.reporterEmail}

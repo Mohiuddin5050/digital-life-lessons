@@ -3,7 +3,7 @@ import React from 'react';
 const AnalyticsChart = ({ value }) => {
   const percentage = Math.min((value / 10) * 100, 100);
   return (
-   <div className="bg-white shadow rounded-xl p-6">
+   <div className="bg-base-100 shadow rounded-xl p-6">
       <h3 className="text-2xl font-semibold mb-6">
         Weekly Contributions
       </h3>

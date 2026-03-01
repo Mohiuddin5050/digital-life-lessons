@@ -51,21 +51,21 @@ const UserDashboardHome = () => {
 
           <Link
             to="/dashboard/my-lessons"
-            className="px-6 py-3 bg-gray-200 rounded-xl"
+            className="px-6 py-3 bg-base-200 rounded-xl"
           >
             📚 My Lessons
           </Link>
 
           <Link
             to="/dashboard/my-favorites"
-            className="px-6 py-3 bg-gray-200 rounded-xl"
+            className="px-6 py-3 bg-base-200 rounded-xl"
           >
             🔖 Favorites
           </Link>
 
           <Link
             to="/dashboard/profile"
-            className="px-6 py-3 bg-gray-200 rounded-xl"
+            className="px-6 py-3 bg-base-200 rounded-xl"
           >
             🧑 Profile
           </Link>

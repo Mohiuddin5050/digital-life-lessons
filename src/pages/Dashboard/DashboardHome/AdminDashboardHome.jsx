@@ -106,7 +106,7 @@ const AdminDashboardHome = () => {
                 {topContributorsData.map((user, index) => (
                   <div
                     key={index}
-                    className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition p-6 flex flex-col items-center text-center"
+                    className="bg-base-100 rounded-xl shadow-lg hover:shadow-xl transition p-6 flex flex-col items-center text-center"
                   >
                     <div className="relative w-30 h-30 mb-4">
                       <img
@@ -119,14 +119,14 @@ const AdminDashboardHome = () => {
                       />
                     </div>
 
-                    <h3 className="font-semibold text-xl text-gray-900">
+                    <h3 className="font-semibold text-xl text-base-content">
                       {user.name || "Anonymous"}
                     </h3>
                     <p className="text-gray-400 text-sm truncate w-full">
                       {user.email}
                     </p>
 
-                    <div className="mt-2 flex items-center gap-2 bg-gray-100 px-4 py-2 rounded-full">
+                    <div className="mt-2 flex items-center gap-2 bg-base-200 px-4 py-2 rounded-xl">
                       <span className="text-gray-500 text-sm">
                         Lessons this week:
                       </span>

@@ -25,12 +25,12 @@ const PaymentSuccess = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <div className="bg-white p-8 rounded-xl shadow max-w-md text-center">
+      <div className="bg-base-100 p-8 rounded-xl shadow max-w-md text-center">
         <FaCheckCircle className="text-green-500 text-5xl mx-auto mb-4" />
 
         <h2 className="text-2xl font-bold mb-2">Payment Successful 🎉</h2>
 
-        <p className="text-gray-600 mb-4">
+        <p className="text-gray-500 mb-4">
           Your premium membership is being activated.
         </p>
 

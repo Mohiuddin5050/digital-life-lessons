@@ -43,10 +43,10 @@ const LessonCard = ({ lesson }) => {
   }
 
   return (
-    <div className="relative bg-white shadow rounded-xl p-4 w-full border border-gray-100">
+    <div className="relative bg-base-100 shadow rounded-xl p-4 w-full border border-gray-100">
       {/* Premium Overlay */}
       {!isPremium && accessLevel === "paid" && (
-        <div className="absolute inset-0 bg-white/70 backdrop-blur-sm flex items-center justify-center rounded-xl z-10">
+        <div className="absolute inset-0 bg-base-100/70 backdrop-blur-sm flex items-center justify-center rounded-xl z-10">
           <Link
             to="/upgrade-membership"
             className="text-primary font-semibold text-center"
@@ -67,7 +67,7 @@ const LessonCard = ({ lesson }) => {
       <img
         src={lessonImage || user2}
         alt={lessonTitle}
-        className="w-full h-56 object-cover rounded-lg"
+        className="w-full h-56 object-cover rounded-xl"
       />
 
       <div className="mt-3 flex flex-wrap gap-2 text-xs capitalize">
@@ -87,14 +87,10 @@ const LessonCard = ({ lesson }) => {
 
       <h3 className="text-lg font-bold mt-3">{limitText(lessonTitle, 18)}</h3>
 
-      <p className="text-sm mt-1 text-gray-600">{limitText(lessonDesc, 70)}</p>
+      <p className="text-sm mt-1 text-gray-500">{limitText(lessonDesc, 70)}</p>
 
       <div className="flex items-center gap-3 mt-4 pt-4 border-t">
-        <img
-          src={user[0]?.photoURL || user1}
-          alt=""
-          className="w-12 h-12"
-        />
+        <img src={user[0]?.photoURL || user1} alt="" className="w-12 h-12" />
         <div>
           <p className="font-semibold text-sm">
             {user[0]?.displayName || "Admin"}

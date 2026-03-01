@@ -95,10 +95,10 @@ const UserProfile = () => {
   };
 
   return (
-    <div className="bg-gray-50 min-h-screen">
+    <div className="min-h-screen pb-10">
       <Container>
         {/* ===== Profile Card ===== */}
-        <div className="bg-white rounded-2xl shadow p-6 mt-10 flex flex-col md:flex-row gap-6 items-center justify-center max-w-lg mx-auto">
+        <div className="bg-base-100 rounded-xl shadow p-6 mt-10 flex flex-col md:flex-row gap-6 items-center justify-center max-w-lg mx-auto">
           <div className="relative">
             <img
               src={
@@ -153,7 +153,7 @@ const UserProfile = () => {
 
       {/* ===== Update Modal ===== */}
       <dialog ref={modalRef} className="modal">
-        <div className="modal-box rounded-2xl">
+        <div className="modal-box rounded-xl">
           <h3 className="font-bold text-xl mb-4 text-center">Update Profile</h3>
 
           <form onSubmit={handleSubmit(onUpdate)}>

@@ -5,6 +5,7 @@ import Container from "../../components/Container";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import { Link } from "react-router";
 
 const HeroSlider = () => {
   return (
@@ -37,6 +38,9 @@ const HeroSlider = () => {
                   Preserve meaningful experiences, reflections, and wisdom you
                   gain throughout life.
                 </p>
+                <Link to="/dashboard" className="btn btn-primary">
+                  My Dashboard
+                </Link>
               </div>
             </div>
           </Container>
@@ -63,6 +67,9 @@ const HeroSlider = () => {
                   Explore public life lessons shared by people from around the
                   world.
                 </p>
+                <Link to="/public-lessons" className="btn btn-primary">
+                  Explore Lessons
+                </Link>
               </div>
             </div>
           </Container>
@@ -89,6 +96,9 @@ const HeroSlider = () => {
                   Reflect, organize, and track your personal growth journey in
                   one place.
                 </p>
+                <Link to="/dashboard/add-lesson" className="btn btn-primary">
+                  Add New Lesson
+                </Link>
               </div>
             </div>
           </Container>

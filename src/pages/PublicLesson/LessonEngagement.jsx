@@ -106,9 +106,9 @@ const LessonEngagement = ({ lesson, user }) => {
     <div className="mt-10 space-y-6">
       {/* 📊 Stats */}
       <div className="grid grid-cols-3 gap-4 text-center">
-        <div className="bg-gray-100 rounded-xl p-4">❤️ {likes} Likes</div>
-        <div className="bg-gray-100 rounded-xl p-4">🔖 {favorites} Favorites</div>
-        <div className="bg-gray-100 rounded-xl p-4">👀 {views} Views</div>
+        <div className="bg-base-200 rounded-xl p-4">❤️ {likes} Likes</div>
+        <div className="bg-base-200 rounded-xl p-4">🔖 {favorites} Favorites</div>
+        <div className="bg-base-200 rounded-xl p-4">👀 {views} Views</div>
       </div>
 
       {/* 🔘 Buttons */}
@@ -151,7 +151,7 @@ const LessonEngagement = ({ lesson, user }) => {
       {/* 🔗 SHARE POPUP */}
       {openShare && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-xl text-center">
+          <div className="bg-base-100 p-6 rounded-xl text-center">
             <h3 className="mb-4 font-semibold">Share this lesson</h3>
             <div className="flex gap-3 justify-center">
               <FacebookShareButton url={shareUrl}>
